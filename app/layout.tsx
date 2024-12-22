@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import cn from 'clsx'
-import { AppSidebar } from '@/components/app-sidebar'
+import AppSidebar from '@/components/app-sidebar'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -29,8 +29,14 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Horoscope',
+  title: {
+    default: 'Horoscope',
+    template: 'Horoscope | %s',
+  },
   description: 'A look into the future.',
+  icons: {
+    icon: '/favicon.svg',
+  },
 }
 
 export default function RootLayout({
@@ -83,20 +89,7 @@ export default function RootLayout({
                 </Breadcrumb>
               </div>
             </header>
-            <div
-              className={cn(
-                'flex',
-                'flex-1',
-                'flex-col',
-                'gap-4',
-                'px-4',
-                'py-20',
-                'mx-auto',
-                'z-1',
-              )}
-            >
-              {children}
-            </div>
+            {children}
           </SidebarInset>
         </SidebarProvider>
       </body>

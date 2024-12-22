@@ -32,7 +32,11 @@ export type NavSubItem = {
   url: string
 }
 
-export function NavMain({ items }: { items: NavItem[] }) {
+export type NavMainProps = {
+  items: NavItem[]
+}
+
+export default function NavMain({ items }: NavMainProps) {
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Zodiac Sign</SidebarGroupLabel>

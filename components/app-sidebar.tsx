@@ -1,5 +1,6 @@
 'use client'
 
+import { ComponentProps } from 'react'
 import cn from 'clsx'
 import { Sparkle } from 'lucide-react'
 import {
@@ -16,7 +17,7 @@ import {
   TbZodiacAquarius,
   TbZodiacPisces,
 } from 'react-icons/tb'
-import { NavItem, NavMain } from '@/components/nav-main'
+import NavMain, { NavItem } from '@/components/nav-main'
 import {
   Sidebar,
   SidebarContent,
@@ -161,7 +162,9 @@ const items: NavItem[] = [
   },
 ]
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export default function AppSidebar({
+  ...props
+}: ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
