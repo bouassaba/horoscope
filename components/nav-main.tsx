@@ -1,7 +1,7 @@
 'use client'
 
-import { ChevronRight, type LucideIcon } from 'lucide-react'
 import cn from 'clsx'
+import { ChevronRight, type LucideIcon } from 'lucide-react'
 import {
   Collapsible,
   CollapsibleContent,

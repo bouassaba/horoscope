@@ -1,6 +1,7 @@
 'use client'
 
 import * as React from 'react'
+import cn from 'clsx'
 import {
   BookOpen,
   Bot,
@@ -16,7 +17,6 @@ import {
   SidebarMenuButton,
   SidebarRail,
 } from '@/components/ui/sidebar'
-import cn from 'clsx'
 
 const data = {
   navMain: [
