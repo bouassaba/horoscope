@@ -3,7 +3,7 @@ import cn from 'clsx'
 export default function Home() {
   return (
     <article className={cn('prose')}>
-      <h1>Scrollable Content</h1>
+      <h1>Lorem Ipsum Odor Amet</h1>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim

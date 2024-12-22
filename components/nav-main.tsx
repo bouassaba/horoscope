@@ -1,7 +1,8 @@
 'use client'
 
+import { ReactElement } from 'react'
 import cn from 'clsx'
-import { ChevronRight, type LucideIcon } from 'lucide-react'
+import { ChevronRight } from 'lucide-react'
 import {
   Collapsible,
   CollapsibleContent,
@@ -18,20 +19,20 @@ import {
   SidebarMenuSubItem,
 } from '@/components/ui/sidebar'
 
-export function NavMain({
-  items,
-}: {
-  items: {
-    title: string
-    url: string
-    icon?: LucideIcon
-    isActive?: boolean
-    items?: {
-      title: string
-      url: string
-    }[]
-  }[]
-}) {
+export type NavItem = {
+  title: string
+  url: string
+  icon: ReactElement
+  isActive?: boolean
+  items: NavSubItem[]
+}
+
+export type NavSubItem = {
+  title: string
+  url: string
+}
+
+export function NavMain({ items }: { items: NavItem[] }) {
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Zodiac Sign</SidebarGroupLabel>
@@ -46,7 +47,7 @@ export function NavMain({
             <SidebarMenuItem>
               <CollapsibleTrigger asChild>
                 <SidebarMenuButton tooltip={item.title}>
-                  {item.icon && <item.icon />}
+                  {item.icon}
                   <span>{item.title}</span>
                   <ChevronRight
                     className={cn(

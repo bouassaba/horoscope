@@ -89,8 +89,8 @@ export default function RootLayout({
                 'flex-1',
                 'flex-col',
                 'gap-4',
-                'p-4',
-                'pt-20',
+                'px-4',
+                'py-20',
                 'mx-auto',
                 'z-1',
               )}

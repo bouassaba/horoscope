@@ -1,15 +1,22 @@
 'use client'
 
-import * as React from 'react'
 import cn from 'clsx'
+import { Sparkle } from 'lucide-react'
 import {
-  BookOpen,
-  Bot,
-  GalleryVerticalEnd,
-  Settings2,
-  SquareTerminal,
-} from 'lucide-react'
-import { NavMain } from '@/components/nav-main'
+  TbZodiacScorpio,
+  TbZodiacAries,
+  TbZodiacTaurus,
+  TbZodiacGemini,
+  TbZodiacCancer,
+  TbZodiacLeo,
+  TbZodiacVirgo,
+  TbZodiacLibra,
+  TbZodiacSagittarius,
+  TbZodiacCapricorn,
+  TbZodiacAquarius,
+  TbZodiacPisces,
+} from 'react-icons/tb'
+import { NavItem, NavMain } from '@/components/nav-main'
 import {
   Sidebar,
   SidebarContent,
@@ -18,95 +25,141 @@ import {
   SidebarRail,
 } from '@/components/ui/sidebar'
 
-const data = {
-  navMain: [
-    {
-      title: 'Playground',
-      url: '#',
-      icon: SquareTerminal,
-      isActive: true,
-      items: [
-        {
-          title: 'History',
-          url: '#',
-        },
-        {
-          title: 'Starred',
-          url: '#',
-        },
-        {
-          title: 'Settings',
-          url: '#',
-        },
-      ],
-    },
-    {
-      title: 'Models',
-      url: '#',
-      icon: Bot,
-      items: [
-        {
-          title: 'Genesis',
-          url: '#',
-        },
-        {
-          title: 'Explorer',
-          url: '#',
-        },
-        {
-          title: 'Quantum',
-          url: '#',
-        },
-      ],
-    },
-    {
-      title: 'Documentation',
-      url: '#',
-      icon: BookOpen,
-      items: [
-        {
-          title: 'Introduction',
-          url: '#',
-        },
-        {
-          title: 'Get Started',
-          url: '#',
-        },
-        {
-          title: 'Tutorials',
-          url: '#',
-        },
-        {
-          title: 'Changelog',
-          url: '#',
-        },
-      ],
-    },
-    {
-      title: 'Settings',
-      url: '#',
-      icon: Settings2,
-      items: [
-        {
-          title: 'General',
-          url: '#',
-        },
-        {
-          title: 'Team',
-          url: '#',
-        },
-        {
-          title: 'Billing',
-          url: '#',
-        },
-        {
-          title: 'Limits',
-          url: '#',
-        },
-      ],
-    },
-  ],
-}
+const items: NavItem[] = [
+  {
+    title: 'Scorpio',
+    url: '#',
+    icon: <TbZodiacScorpio />,
+    isActive: true,
+    items: [
+      {
+        title: 'Today',
+        url: '#',
+      },
+    ],
+  },
+  {
+    title: 'Aries',
+    url: '#',
+    icon: <TbZodiacAries />,
+    items: [
+      {
+        title: 'Today',
+        url: '#',
+      },
+    ],
+  },
+  {
+    title: 'Taurus',
+    url: '#',
+    icon: <TbZodiacTaurus />,
+    items: [
+      {
+        title: 'Today',
+        url: '#',
+      },
+    ],
+  },
+  {
+    title: 'Gemini',
+    url: '#',
+    icon: <TbZodiacGemini />,
+    items: [
+      {
+        title: 'Today',
+        url: '#',
+      },
+    ],
+  },
+  {
+    title: 'Cancer',
+    url: '#',
+    icon: <TbZodiacCancer />,
+    items: [
+      {
+        title: 'Today',
+        url: '#',
+      },
+    ],
+  },
+  {
+    title: 'Leo',
+    url: '#',
+    icon: <TbZodiacLeo />,
+    items: [
+      {
+        title: 'Today',
+        url: '#',
+      },
+    ],
+  },
+  {
+    title: 'Virgo',
+    url: '#',
+    icon: <TbZodiacVirgo />,
+    items: [
+      {
+        title: 'Today',
+        url: '#',
+      },
+    ],
+  },
+  {
+    title: 'Libra',
+    url: '#',
+    icon: <TbZodiacLibra />,
+    items: [
+      {
+        title: 'Today',
+        url: '#',
+      },
+    ],
+  },
+  {
+    title: 'Sagittarius',
+    url: '#',
+    icon: <TbZodiacSagittarius />,
+    items: [
+      {
+        title: 'Today',
+        url: '#',
+      },
+    ],
+  },
+  {
+    title: 'Capricorn',
+    url: '#',
+    icon: <TbZodiacCapricorn />,
+    items: [
+      {
+        title: 'Today',
+        url: '#',
+      },
+    ],
+  },
+  {
+    title: 'Aquarius',
+    url: '#',
+    icon: <TbZodiacAquarius />,
+    items: [
+      {
+        title: 'Today',
+        url: '#',
+      },
+    ],
+  },
+  {
+    title: 'Pisces',
+    url: '#',
+    icon: <TbZodiacPisces />,
+    items: [
+      {
+        title: 'Today',
+        url: '#',
+      },
+    ],
+  },
+]
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
@@ -131,7 +184,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               'text-sidebar-primary-foreground',
             )}
           >
-            <GalleryVerticalEnd className={cn('size-4')} />
+            <Sparkle className={cn('size-4')} />
           </div>
           <div
             className={cn(
@@ -150,7 +203,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenuButton>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
+        <NavMain items={items} />
       </SidebarContent>
       <SidebarRail />
     </Sidebar>
