@@ -1,7 +1,7 @@
 export default function Home() {
   return (
-    <>
-      <h2>Scrollable Content</h2>
+    <article className="prose">
+      <h1>Scrollable Content</h1>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -96,6 +96,6 @@ export default function Home() {
         leo aliquam donec lorem dapibus. Vehicula etiam eleifend nisi eget ante
         venenatis, tristique elit.
       </p>
-    </>
+    </article>
   )
 }
