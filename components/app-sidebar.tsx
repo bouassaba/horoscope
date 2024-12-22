@@ -16,6 +16,7 @@ import {
   SidebarMenuButton,
   SidebarRail,
 } from '@/components/ui/sidebar'
+import cn from 'clsx'
 
 const data = {
   navMain: [
@@ -113,14 +114,38 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarHeader>
         <SidebarMenuButton
           size="lg"
-          className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+          className={cn(
+            'data-[state=open]:bg-sidebar-accent',
+            'data-[state=open]:text-sidebar-accent-foreground',
+          )}
         >
-          <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-            <GalleryVerticalEnd className="size-4" />
+          <div
+            className={cn(
+              'flex',
+              'aspect-square',
+              'size-8',
+              'items-center',
+              'justify-center',
+              'rounded-lg',
+              'bg-sidebar-primary',
+              'text-sidebar-primary-foreground',
+            )}
+          >
+            <GalleryVerticalEnd className={cn('size-4')} />
           </div>
-          <div className="grid flex-1 text-left text-sm leading-tight">
-            <span className="truncate font-semibold">Hososcope</span>
-            <span className="truncate text-xs">A Look Into the Future</span>
+          <div
+            className={cn(
+              'grid',
+              'flex-1',
+              'text-left',
+              'text-sm',
+              'leading-tight',
+            )}
+          >
+            <span className={cn('truncate', 'font-semibold')}>Hososcope</span>
+            <span className={cn('truncate', 'text-xs')}>
+              A Look Into the Future
+            </span>
           </div>
         </SidebarMenuButton>
       </SidebarHeader>

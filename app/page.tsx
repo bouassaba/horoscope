@@ -1,6 +1,8 @@
+import cn from 'clsx'
+
 export default function Home() {
   return (
-    <article className="prose">
+    <article className={cn('prose')}>
       <h1>Scrollable Content</h1>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod

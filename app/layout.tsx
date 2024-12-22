@@ -46,16 +46,36 @@ export default function RootLayout({
         <SidebarProvider>
           <AppSidebar />
           <SidebarInset>
-            <header className="fixed w-full backdrop-blur-sm bg-white bg-opacity-80 z-50 flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
-              <div className="flex items-center gap-2 px-4">
-                <SidebarTrigger className="-ml-1" />
-                <Separator orientation="vertical" className="mr-2 h-4" />
+            <header
+              className={cn(
+                'fixed',
+                'w-full',
+                'backdrop-blur-sm',
+                'bg-white',
+                'bg-opacity-80',
+                'z-50',
+                'flex',
+                'h-16',
+                'shrink-0',
+                'items-center',
+                'gap-2',
+                'transition-[width,height]',
+                'ease-linear',
+                'group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12',
+              )}
+            >
+              <div className={cn('flex', 'items-center', 'gap-2', 'px-4')}>
+                <SidebarTrigger className={cn('-ml-1')} />
+                <Separator
+                  className={cn('mr-2', 'h-4')}
+                  orientation="vertical"
+                />
                 <Breadcrumb>
                   <BreadcrumbList>
-                    <BreadcrumbItem className="hidden md:block">
+                    <BreadcrumbItem className={cn('hidden', 'md:block')}>
                       <BreadcrumbLink href="#">Zodiac Sign</BreadcrumbLink>
                     </BreadcrumbItem>
-                    <BreadcrumbSeparator className="hidden md:block" />
+                    <BreadcrumbSeparator className={cn('hidden', 'md:block')} />
                     <BreadcrumbItem>
                       <BreadcrumbPage>Scorpio</BreadcrumbPage>
                     </BreadcrumbItem>
@@ -63,7 +83,18 @@ export default function RootLayout({
                 </Breadcrumb>
               </div>
             </header>
-            <div className="flex flex-1 flex-col gap-4 p-4 pt-20 mx-auto z-1">
+            <div
+              className={cn(
+                'flex',
+                'flex-1',
+                'flex-col',
+                'gap-4',
+                'p-4',
+                'pt-20',
+                'mx-auto',
+                'z-1',
+              )}
+            >
               {children}
             </div>
           </SidebarInset>
