@@ -2,7 +2,7 @@ import cn from 'clsx'
 
 export default function Home() {
   return (
-    <article className={cn('prose')}>
+    <article className={cn('prose', 'dark:prose-invert')}>
       <h1>Lorem Ipsum Odor Amet</h1>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod

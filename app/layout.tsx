@@ -1,21 +1,10 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import cn from 'clsx'
+import AppHeader from '@/components/app-header'
 import AppSidebar from '@/components/app-sidebar'
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from '@/components/ui/breadcrumb'
-import { Separator } from '@/components/ui/separator'
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from '@/components/ui/sidebar'
+import ThemeProvider from '@/components/theme-provider'
+import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
 import './globals.css'
 
 const geistSans = Geist({
@@ -49,49 +38,20 @@ export default function RootLayout({
       <body
         className={cn(geistSans.variable, geistMono.variable, 'antialiased')}
       >
-        <SidebarProvider>
-          <AppSidebar />
-          <SidebarInset>
-            <header
-              className={cn(
-                'fixed',
-                'w-full',
-                'backdrop-blur-sm',
-                'bg-white',
-                'bg-opacity-80',
-                'z-50',
-                'flex',
-                'h-16',
-                'shrink-0',
-                'items-center',
-                'gap-2',
-                'transition-[width,height]',
-                'ease-linear',
-                'group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12',
-              )}
-            >
-              <div className={cn('flex', 'items-center', 'gap-2', 'px-4')}>
-                <SidebarTrigger className={cn('-ml-1')} />
-                <Separator
-                  className={cn('mr-2', 'h-4')}
-                  orientation="vertical"
-                />
-                <Breadcrumb>
-                  <BreadcrumbList>
-                    <BreadcrumbItem className={cn('hidden', 'md:block')}>
-                      <BreadcrumbLink href="#">Zodiac Sign</BreadcrumbLink>
-                    </BreadcrumbItem>
-                    <BreadcrumbSeparator className={cn('hidden', 'md:block')} />
-                    <BreadcrumbItem>
-                      <BreadcrumbPage>Scorpio</BreadcrumbPage>
-                    </BreadcrumbItem>
-                  </BreadcrumbList>
-                </Breadcrumb>
-              </div>
-            </header>
-            {children}
-          </SidebarInset>
-        </SidebarProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <SidebarProvider>
+            <AppSidebar />
+            <SidebarInset>
+              <AppHeader />
+              <div className={cn('overflow-auto')}>{children}</div>
+            </SidebarInset>
+          </SidebarProvider>
+        </ThemeProvider>
       </body>
     </html>
   )

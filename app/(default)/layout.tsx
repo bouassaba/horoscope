@@ -3,11 +3,11 @@
 import { ReactNode, useEffect } from 'react'
 import cn from 'clsx'
 
-type LayoutProps = {
+type DefaultLayoutProps = {
   children: ReactNode
 }
 
-export default function Layout({ children }: LayoutProps) {
+export default function DefaultLayout({ children }: DefaultLayoutProps) {
   useEffect(() => {
     const element = document.querySelector("link[rel='icon']")
     if (element) {
@@ -32,18 +32,7 @@ export default function Layout({ children }: LayoutProps) {
   }, [])
 
   return (
-    <div
-      className={cn(
-        'flex',
-        'flex-1',
-        'flex-col',
-        'gap-4',
-        'px-4',
-        'py-20',
-        'mx-auto',
-        'z-1',
-      )}
-    >
+    <div className={cn('flex', 'justify-center', 'px-4', 'py-20', 'z-1')}>
       {children}
     </div>
   )
