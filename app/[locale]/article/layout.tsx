@@ -1,10 +1,10 @@
 'use client'
 
-import cn from 'clsx'
 import AppSidebar from '@/components/app-sidebar'
 import AppThemeProvider from '@/components/app-theme-provider'
 import Header from '@/components/header'
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
+import { cn } from '@/lib/utils'
 import { I18nProviderClient } from '@/locales/client'
 
 export default function DefaultLayout({

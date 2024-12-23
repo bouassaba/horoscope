@@ -2,7 +2,6 @@
 
 import { ComponentProps } from 'react'
 import { useRouter } from 'next/navigation'
-import cn from 'clsx'
 import { Sparkle } from 'lucide-react'
 import Navigation from '@/components/navigation'
 import {
@@ -12,6 +11,7 @@ import {
   SidebarMenuButton,
   SidebarRail,
 } from '@/components/ui/sidebar'
+import { cn } from '@/lib/utils'
 import { useScopedI18n } from '@/locales/client'
 
 export default function AppSidebar({

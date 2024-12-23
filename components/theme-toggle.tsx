@@ -2,7 +2,6 @@
 
 import * as React from 'react'
 import { capitalCase } from 'change-case'
-import cn from 'clsx'
 import { Moon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { Button } from '@/components/ui/button'
@@ -12,6 +11,7 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { cn } from '@/lib/utils'
 
 export default function ThemeToggle() {
   const { setTheme, themes, theme: currentTheme } = useTheme()

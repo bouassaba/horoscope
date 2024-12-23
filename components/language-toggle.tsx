@@ -1,7 +1,6 @@
 'use client'
 
 import * as React from 'react'
-import cn from 'clsx'
 import { Languages } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
@@ -10,6 +9,7 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { cn } from '@/lib/utils'
 import { useChangeLocale, useCurrentLocale } from '@/locales/client'
 
 export default function LanguageToggle() {

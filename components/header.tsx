@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import cn from 'clsx'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -12,6 +11,8 @@ import {
 } from '@/components/ui/breadcrumb'
 import { Separator } from '@/components/ui/separator'
 import { SidebarTrigger } from '@/components/ui/sidebar'
+import { cn } from '@/lib/utils'
+import DateToggle from './date-toggle'
 import LanguageToggle from './language-toggle'
 import ThemeToggle from './theme-toggle'
 
@@ -53,6 +54,7 @@ export default function Header() {
           </BreadcrumbList>
         </Breadcrumb>
         <div className={cn('grow', 'h-10')} />
+        <DateToggle />
         <LanguageToggle />
         <ThemeToggle />
       </div>

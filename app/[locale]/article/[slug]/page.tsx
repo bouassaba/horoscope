@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { capitalCase } from 'change-case'
-import cn from 'clsx'
+import { cn } from '@/lib/utils'
 import { getCurrentLocale } from '@/locales/server'
 
 type Props = {
