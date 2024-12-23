@@ -12,7 +12,7 @@ import {
 import { cn } from '@/lib/utils'
 import { useChangeLocale, useCurrentLocale } from '@/locales/client'
 
-export default function LanguageToggle() {
+export default function LanguageSelector() {
   const changeLocale = useChangeLocale()
   const locale = useCurrentLocale()
 

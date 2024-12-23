@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/popover'
 import { cn } from '@/lib/utils'
 
-export default function DateToggle() {
+export default function DateSelector() {
   return (
     <Popover>
       <PopoverTrigger asChild>

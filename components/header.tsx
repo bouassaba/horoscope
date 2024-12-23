@@ -12,8 +12,8 @@ import {
 import { Separator } from '@/components/ui/separator'
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import { cn } from '@/lib/utils'
-import DateToggle from './date-toggle'
-import LanguageToggle from './language-toggle'
+import DateSelector from './date-selector'
+import LanguageSelector from './language-selector'
 import ThemeToggle from './theme-toggle'
 
 export default function Header() {
@@ -54,8 +54,8 @@ export default function Header() {
           </BreadcrumbList>
         </Breadcrumb>
         <div className={cn('grow', 'h-10')} />
-        <DateToggle />
-        <LanguageToggle />
+        <DateSelector />
+        <LanguageSelector />
         <ThemeToggle />
       </div>
     </header>
