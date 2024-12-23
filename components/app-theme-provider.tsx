@@ -3,14 +3,14 @@
 import dynamic from 'next/dynamic'
 import { ThemeProviderProps } from 'next-themes'
 
-const NextThemesProvider = dynamic(
+const ThemeProvider = dynamic(
   () => import('next-themes').then((e) => e.ThemeProvider),
   { ssr: false },
 )
 
-export default function ThemeProvider({
+export default function AppThemeProvider({
   children,
   ...props
 }: ThemeProviderProps) {
-  return <NextThemesProvider {...props}>{children}</NextThemesProvider>
+  return <ThemeProvider {...props}>{children}</ThemeProvider>
 }

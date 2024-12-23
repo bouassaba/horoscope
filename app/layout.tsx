@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import cn from 'clsx'
 import AppSidebar from '@/components/app-sidebar'
+import AppThemeProvider from '@/components/app-theme-provider'
 import Header from '@/components/header'
-import ThemeProvider from '@/components/theme-provider'
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
 import './globals.css'
 
@@ -38,7 +38,7 @@ export default function RootLayout({
       <body
         className={cn(geistSans.variable, geistMono.variable, 'antialiased')}
       >
-        <ThemeProvider
+        <AppThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
@@ -51,7 +51,7 @@ export default function RootLayout({
               <div className={cn('overflow-auto')}>{children}</div>
             </SidebarInset>
           </SidebarProvider>
-        </ThemeProvider>
+        </AppThemeProvider>
       </body>
     </html>
   )
