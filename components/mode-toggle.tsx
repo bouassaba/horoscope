@@ -1,6 +1,7 @@
 'use client'
 
 import * as React from 'react'
+import { capitalCase } from 'change-case'
 import cn from 'clsx'
 import { Moon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
@@ -13,10 +14,7 @@ import {
 } from '@/components/ui/dropdown-menu'
 
 export default function ModeToggle() {
-  const { setTheme, themes, theme } = useTheme()
-
-  console.log('themes', themes)
-  console.log('theme', theme)
+  const { setTheme, themes, theme: currentTheme } = useTheme()
 
   return (
     <DropdownMenu>
@@ -49,24 +47,15 @@ export default function ModeToggle() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuCheckboxItem
-          checked={theme === 'light'}
-          onClick={() => setTheme('light')}
-        >
-          Light
-        </DropdownMenuCheckboxItem>
-        <DropdownMenuCheckboxItem
-          checked={theme === 'dark'}
-          onClick={() => setTheme('dark')}
-        >
-          Dark
-        </DropdownMenuCheckboxItem>
-        <DropdownMenuCheckboxItem
-          checked={theme === 'system'}
-          onClick={() => setTheme('system')}
-        >
-          System
-        </DropdownMenuCheckboxItem>
+        {themes.map((theme) => (
+          <DropdownMenuCheckboxItem
+            key={theme}
+            checked={currentTheme === theme}
+            onClick={() => setTheme(theme)}
+          >
+            {capitalCase(theme)}
+          </DropdownMenuCheckboxItem>
+        ))}
       </DropdownMenuContent>
     </DropdownMenu>
   )
