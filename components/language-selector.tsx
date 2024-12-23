@@ -29,7 +29,7 @@ export default function LanguageSelector() {
               'transition-all',
             )}
           />
-          <span className={cn('sr-only')}>Toggle Language</span>
+          <span className={cn('sr-only')}>Select Language</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">

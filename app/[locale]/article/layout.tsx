@@ -1,5 +1,4 @@
-'use client'
-
+import { cookies } from 'next/headers'
 import AppSidebar from '@/components/app-sidebar'
 import AppThemeProvider from '@/components/app-theme-provider'
 import Header from '@/components/header'
@@ -15,6 +14,8 @@ export default function DefaultLayout({
   children: React.ReactNode
 }>) {
   const { locale } = params
+  const cookieStore = cookies()
+  const defaultOpen = cookieStore.get('sidebar:state')?.value === 'true'
 
   return (
     <I18nProviderClient locale={locale}>
@@ -24,7 +25,7 @@ export default function DefaultLayout({
         enableSystem
         disableTransitionOnChange
       >
-        <SidebarProvider>
+        <SidebarProvider defaultOpen={defaultOpen}>
           <AppSidebar />
           <SidebarInset>
             <Header />
