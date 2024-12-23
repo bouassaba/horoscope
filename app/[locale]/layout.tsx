@@ -7,9 +7,18 @@ export const metadata: Metadata = {
     template: 'Horoscope | %s',
   },
   description: 'A look into the future.',
-  icons: {
-    icon: '/favicon.svg',
-  },
+  icons: [
+    {
+      rel: 'icon',
+      url: '/favicon.svg',
+      media: '(prefers-color-scheme: light)',
+    },
+    {
+      rel: 'icon',
+      url: '/favicon-dark.svg',
+      media: '(prefers-color-scheme: dark)',
+    },
+  ],
 }
 
 export default function RootLayout({

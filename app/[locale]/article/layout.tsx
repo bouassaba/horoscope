@@ -1,6 +1,5 @@
 'use client'
 
-import { useEffect } from 'react'
 import cn from 'clsx'
 import AppSidebar from '@/components/app-sidebar'
 import AppThemeProvider from '@/components/app-theme-provider'
@@ -16,29 +15,6 @@ export default function DefaultLayout({
   children: React.ReactNode
 }>) {
   const { locale } = params
-
-  useEffect(() => {
-    const element = document.querySelector("link[rel='icon']")
-    if (element) {
-      window
-        .matchMedia('(prefers-color-scheme: dark)')
-        .addEventListener('change', (event: MediaQueryListEvent) => {
-          if (event.matches) {
-            element.setAttribute('href', '/favicon-dark.svg')
-          } else {
-            element.setAttribute('href', '/favicon.svg')
-          }
-        })
-      if (
-        window.matchMedia &&
-        window.matchMedia('(prefers-color-scheme: dark)').matches
-      ) {
-        element.setAttribute('href', '/favicon-dark.svg')
-      } else {
-        element.setAttribute('href', '/favicon.svg')
-      }
-    }
-  }, [])
 
   return (
     <I18nProviderClient locale={locale}>
