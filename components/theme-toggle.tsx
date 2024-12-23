@@ -43,7 +43,7 @@ export default function ThemeToggle() {
               'dark:scale-100',
             )}
           />
-          <span className={cn('sr-only')}>Toggle theme</span>
+          <span className={cn('sr-only')}>Toggle Theme</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">

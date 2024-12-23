@@ -12,11 +12,13 @@ import {
   SidebarMenuButton,
   SidebarRail,
 } from '@/components/ui/sidebar'
+import { useScopedI18n } from '@/locales/client'
 
 export default function AppSidebar({
   ...props
 }: ComponentProps<typeof Sidebar>) {
   const router = useRouter()
+  const t = useScopedI18n('sidebar')
 
   return (
     <Sidebar collapsible="icon" {...props}>
@@ -52,10 +54,10 @@ export default function AppSidebar({
               'leading-tight',
             )}
           >
-            <span className={cn('truncate', 'font-semibold')}>Hososcope</span>
-            <span className={cn('truncate', 'text-xs')}>
-              A Look Into the Future
+            <span className={cn('truncate', 'font-semibold')}>
+              {t('appName')}
             </span>
+            <span className={cn('truncate', 'text-xs')}>{t('tagline')}</span>
           </div>
         </SidebarMenuButton>
       </SidebarHeader>
