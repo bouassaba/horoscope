@@ -2,8 +2,6 @@
 
 import { ReactElement } from 'react'
 import Link from 'next/link'
-import cn from 'clsx'
-import { ChevronRight } from 'lucide-react'
 import {
   TbZodiacScorpio,
   TbZodiacAries,
@@ -19,77 +17,39 @@ import {
   TbZodiacPisces,
 } from 'react-icons/tb'
 import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@/components/ui/collapsible'
-import {
   SidebarGroup,
+  SidebarGroupContent,
   SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
 } from '@/components/ui/sidebar'
 
 export type NavigationItem = {
   title: string
+  url: string
   icon: ReactElement
   isActive?: boolean
-  items: NavigationSubItem[]
-}
-
-export type NavigationSubItem = {
-  title: string
-  url: string
 }
 
 export default function Navigation() {
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Zodiac Sign</SidebarGroupLabel>
-      <SidebarMenu>
-        {items.map((item) => (
-          <Collapsible
-            key={item.title}
-            asChild
-            defaultOpen={item.isActive}
-            className={cn('group/collapsible')}
-          >
-            <SidebarMenuItem>
-              <CollapsibleTrigger asChild>
-                <SidebarMenuButton tooltip={item.title}>
+      <SidebarGroupContent>
+        <SidebarMenu>
+          {items.map((item, index) => (
+            <SidebarMenuItem key={index}>
+              <SidebarMenuButton asChild>
+                <Link href={item.url}>
                   {item.icon}
                   <span>{item.title}</span>
-                  <ChevronRight
-                    className={cn(
-                      'ml-auto',
-                      'transition-transform',
-                      'duration-200',
-                      'group-data-[state=open]/collapsible:rotate-90',
-                    )}
-                  />
-                </SidebarMenuButton>
-              </CollapsibleTrigger>
-              <CollapsibleContent>
-                <SidebarMenuSub>
-                  {item.items?.map((subItem) => (
-                    <SidebarMenuSubItem key={subItem.title}>
-                      <SidebarMenuSubButton asChild>
-                        <Link href={subItem.url}>
-                          <span>{subItem.title}</span>
-                        </Link>
-                      </SidebarMenuSubButton>
-                    </SidebarMenuSubItem>
-                  ))}
-                </SidebarMenuSub>
-              </CollapsibleContent>
+                </Link>
+              </SidebarMenuButton>
             </SidebarMenuItem>
-          </Collapsible>
-        ))}
-      </SidebarMenu>
+          ))}
+        </SidebarMenu>
+      </SidebarGroupContent>
     </SidebarGroup>
   )
 }
@@ -97,123 +57,63 @@ export default function Navigation() {
 const items: NavigationItem[] = [
   {
     title: 'Scorpio',
+    url: '/article/scorpio',
     icon: <TbZodiacScorpio />,
     isActive: true,
-    items: [
-      {
-        title: 'Today',
-        url: '/article/scorpio',
-      },
-    ],
   },
   {
     title: 'Aries',
+    url: '#',
     icon: <TbZodiacAries />,
-    items: [
-      {
-        title: 'Today',
-        url: '#',
-      },
-    ],
   },
   {
     title: 'Taurus',
+    url: '#',
     icon: <TbZodiacTaurus />,
-    items: [
-      {
-        title: 'Today',
-        url: '#',
-      },
-    ],
   },
   {
     title: 'Gemini',
+    url: '#',
     icon: <TbZodiacGemini />,
-    items: [
-      {
-        title: 'Today',
-        url: '#',
-      },
-    ],
   },
   {
     title: 'Cancer',
+    url: '#',
     icon: <TbZodiacCancer />,
-    items: [
-      {
-        title: 'Today',
-        url: '#',
-      },
-    ],
   },
   {
     title: 'Leo',
+    url: '#',
     icon: <TbZodiacLeo />,
-    items: [
-      {
-        title: 'Today',
-        url: '#',
-      },
-    ],
   },
   {
     title: 'Virgo',
+    url: '#',
     icon: <TbZodiacVirgo />,
-    items: [
-      {
-        title: 'Today',
-        url: '#',
-      },
-    ],
   },
   {
     title: 'Libra',
+    url: '#',
     icon: <TbZodiacLibra />,
-    items: [
-      {
-        title: 'Today',
-        url: '#',
-      },
-    ],
   },
   {
     title: 'Sagittarius',
+    url: '#',
     icon: <TbZodiacSagittarius />,
-    items: [
-      {
-        title: 'Today',
-        url: '#',
-      },
-    ],
   },
   {
     title: 'Capricorn',
+    url: '#',
     icon: <TbZodiacCapricorn />,
-    items: [
-      {
-        title: 'Today',
-        url: '#',
-      },
-    ],
   },
   {
     title: 'Aquarius',
+    url: '#',
     icon: <TbZodiacAquarius />,
-    items: [
-      {
-        title: 'Today',
-        url: '#',
-      },
-    ],
   },
   {
     title: 'Pisces',
+    url: '#',
     icon: <TbZodiacPisces />,
-    items: [
-      {
-        title: 'Today',
-        url: '#',
-      },
-    ],
   },
 ]
