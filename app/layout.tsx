@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import cn from 'clsx'
-import AppHeader from '@/components/app-header'
 import AppSidebar from '@/components/app-sidebar'
+import Header from '@/components/header'
 import ThemeProvider from '@/components/theme-provider'
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
 import './globals.css'
@@ -47,7 +47,7 @@ export default function RootLayout({
           <SidebarProvider>
             <AppSidebar />
             <SidebarInset>
-              <AppHeader />
+              <Header />
               <div className={cn('overflow-auto')}>{children}</div>
             </SidebarInset>
           </SidebarProvider>

@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import cn from 'clsx'
 import {
   Breadcrumb,
@@ -11,9 +12,9 @@ import {
 } from '@/components/ui/breadcrumb'
 import { Separator } from '@/components/ui/separator'
 import { SidebarTrigger } from '@/components/ui/sidebar'
-import ModeToggle from './mode-toggle'
+import ThemeToggle from './theme-toggle'
 
-export default function AppHeader() {
+export default function Header() {
   return (
     <header
       className={cn(
@@ -40,7 +41,9 @@ export default function AppHeader() {
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem className={cn('hidden', 'md:block')}>
-              <BreadcrumbLink href="#">Zodiac Sign</BreadcrumbLink>
+              <BreadcrumbLink asChild>
+                <Link href="/">Zodiac Sign</Link>
+              </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator className={cn('hidden', 'md:block')} />
             <BreadcrumbItem>
@@ -49,7 +52,7 @@ export default function AppHeader() {
           </BreadcrumbList>
         </Breadcrumb>
         <div className={cn('grow', 'h-10')} />
-        <ModeToggle />
+        <ThemeToggle />
       </div>
     </header>
   )

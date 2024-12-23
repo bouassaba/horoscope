@@ -1,23 +1,10 @@
 'use client'
 
 import { ComponentProps } from 'react'
+import { useRouter } from 'next/navigation'
 import cn from 'clsx'
 import { Sparkle } from 'lucide-react'
-import {
-  TbZodiacScorpio,
-  TbZodiacAries,
-  TbZodiacTaurus,
-  TbZodiacGemini,
-  TbZodiacCancer,
-  TbZodiacLeo,
-  TbZodiacVirgo,
-  TbZodiacLibra,
-  TbZodiacSagittarius,
-  TbZodiacCapricorn,
-  TbZodiacAquarius,
-  TbZodiacPisces,
-} from 'react-icons/tb'
-import NavMain, { NavItem } from '@/components/nav-main'
+import Navigation from '@/components/navigation'
 import {
   Sidebar,
   SidebarContent,
@@ -26,145 +13,11 @@ import {
   SidebarRail,
 } from '@/components/ui/sidebar'
 
-const items: NavItem[] = [
-  {
-    title: 'Scorpio',
-    url: '#',
-    icon: <TbZodiacScorpio />,
-    isActive: true,
-    items: [
-      {
-        title: 'Today',
-        url: '#',
-      },
-    ],
-  },
-  {
-    title: 'Aries',
-    url: '#',
-    icon: <TbZodiacAries />,
-    items: [
-      {
-        title: 'Today',
-        url: '#',
-      },
-    ],
-  },
-  {
-    title: 'Taurus',
-    url: '#',
-    icon: <TbZodiacTaurus />,
-    items: [
-      {
-        title: 'Today',
-        url: '#',
-      },
-    ],
-  },
-  {
-    title: 'Gemini',
-    url: '#',
-    icon: <TbZodiacGemini />,
-    items: [
-      {
-        title: 'Today',
-        url: '#',
-      },
-    ],
-  },
-  {
-    title: 'Cancer',
-    url: '#',
-    icon: <TbZodiacCancer />,
-    items: [
-      {
-        title: 'Today',
-        url: '#',
-      },
-    ],
-  },
-  {
-    title: 'Leo',
-    url: '#',
-    icon: <TbZodiacLeo />,
-    items: [
-      {
-        title: 'Today',
-        url: '#',
-      },
-    ],
-  },
-  {
-    title: 'Virgo',
-    url: '#',
-    icon: <TbZodiacVirgo />,
-    items: [
-      {
-        title: 'Today',
-        url: '#',
-      },
-    ],
-  },
-  {
-    title: 'Libra',
-    url: '#',
-    icon: <TbZodiacLibra />,
-    items: [
-      {
-        title: 'Today',
-        url: '#',
-      },
-    ],
-  },
-  {
-    title: 'Sagittarius',
-    url: '#',
-    icon: <TbZodiacSagittarius />,
-    items: [
-      {
-        title: 'Today',
-        url: '#',
-      },
-    ],
-  },
-  {
-    title: 'Capricorn',
-    url: '#',
-    icon: <TbZodiacCapricorn />,
-    items: [
-      {
-        title: 'Today',
-        url: '#',
-      },
-    ],
-  },
-  {
-    title: 'Aquarius',
-    url: '#',
-    icon: <TbZodiacAquarius />,
-    items: [
-      {
-        title: 'Today',
-        url: '#',
-      },
-    ],
-  },
-  {
-    title: 'Pisces',
-    url: '#',
-    icon: <TbZodiacPisces />,
-    items: [
-      {
-        title: 'Today',
-        url: '#',
-      },
-    ],
-  },
-]
-
 export default function AppSidebar({
   ...props
 }: ComponentProps<typeof Sidebar>) {
+  const router = useRouter()
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -174,6 +27,7 @@ export default function AppSidebar({
             'data-[state=open]:bg-sidebar-accent',
             'data-[state=open]:text-sidebar-accent-foreground',
           )}
+          onClick={() => router.push('/')}
         >
           <div
             className={cn(
@@ -206,7 +60,7 @@ export default function AppSidebar({
         </SidebarMenuButton>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={items} />
+        <Navigation />
       </SidebarContent>
       <SidebarRail />
     </Sidebar>
