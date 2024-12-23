@@ -1,23 +1,26 @@
 import type { Metadata } from 'next'
 import { capitalCase } from 'change-case'
 import cn from 'clsx'
+import { getCurrentLocale } from '@/locales/server'
 
 type Props = {
-  params: Promise<{ slug: string }>
+  params: { slug: string }
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params
+  const { slug } = params
   return {
     title: capitalCase(slug),
   }
 }
 
 export default function SlugPage() {
+  const locale = getCurrentLocale()
+
   return (
     <article className={cn('prose', 'dark:prose-invert')}>
-      <h1>Scorpio</h1>
+      <h1>Scorpio ({locale})</h1>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim

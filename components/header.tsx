@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/breadcrumb'
 import { Separator } from '@/components/ui/separator'
 import { SidebarTrigger } from '@/components/ui/sidebar'
+import LanguageToggle from './language-toggle'
 import ThemeToggle from './theme-toggle'
 
 export default function Header() {
@@ -52,6 +53,7 @@ export default function Header() {
           </BreadcrumbList>
         </Breadcrumb>
         <div className={cn('grow', 'h-10')} />
+        <LanguageToggle />
         <ThemeToggle />
       </div>
     </header>
