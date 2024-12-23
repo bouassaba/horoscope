@@ -29,7 +29,7 @@ export default function AppSidebar({
             'data-[state=open]:bg-sidebar-accent',
             'data-[state=open]:text-sidebar-accent-foreground',
           )}
-          onClick={() => router.push('/')}
+          onClick={() => router.push('/article')}
         >
           <div
             className={cn(

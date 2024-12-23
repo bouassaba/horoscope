@@ -102,7 +102,7 @@ const items: NavigationItem[] = [
     items: [
       {
         title: 'Today',
-        url: '/scorpio',
+        url: '/article/scorpio',
       },
     ],
   },
