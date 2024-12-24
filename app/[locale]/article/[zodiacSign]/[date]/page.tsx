@@ -20,19 +20,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default async function SlugPage({ params }: Props) {
+export default async function ArticleByZodiacSignAndDatePage({
+  params,
+}: Props) {
   const locale = await getCurrentLocale()
-  const { zodiacSign, date } = params
   const article = await fetchByZodiacSignAndDate({
-    zodiacSign,
-    date,
+    zodiacSign: params.zodiacSign,
+    date: params.date,
     language: locale,
   })
 
   return (
     <article className={cn('prose', 'dark:prose-invert')}>
-      <h1>{article.zodiacSign.name}</h1>
-      <PortableText value={article.bodyRaw} />
+      {article ? (
+        <>
+          <h1>{article.zodiacSign.name}</h1>
+          <PortableText value={article.bodyRaw} />
+        </>
+      ) : null}
     </article>
   )
 }

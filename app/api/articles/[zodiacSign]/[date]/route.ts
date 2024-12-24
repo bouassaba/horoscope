@@ -10,6 +10,10 @@ export async function GET(
 ) {
   const searchParams = request.nextUrl.searchParams
   const language = searchParams.get('language') as string | undefined
-  const result = await getByZodiacSignAndDate({ ...params, language })
-  return Response.json(result, { status: 200 })
+  const article = await getByZodiacSignAndDate({ ...params, language })
+  if (article) {
+    return Response.json(article, { status: 200 })
+  } else {
+    return new Response(null, { status: 404 })
+  }
 }

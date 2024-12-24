@@ -7,15 +7,14 @@ export type FetchAllOptions = {
 
 export async function fetchAll({
   language,
-}: FetchAllOptions): Promise<ZodiacSignDTO[]> {
+}: FetchAllOptions): Promise<ZodiacSignDTO[] | undefined> {
   const params = new URLSearchParams()
   if (language) {
     params.append('language', language)
   }
   const url = `${API_URL}/api/zodiac-signs?${params}`
   const response = await fetch(url)
-  if (!response.ok) {
-    throw new Error(`GET ${url} failed with status: ${response.status}`)
+  if (response.ok) {
+    return response.json()
   }
-  return response.json()
 }

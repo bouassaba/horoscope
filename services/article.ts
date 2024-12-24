@@ -14,7 +14,7 @@ export async function getByZodiacSignAndDate({
   zodiacSign,
   date,
   language,
-}: GetByZodiacSignAndDateOptions) {
+}: GetByZodiacSignAndDateOptions): Promise<ArticleDTO | undefined> {
   const { allArticle } = await request<{ allArticle: Article[] }>(
     GRAPHQL_URL,
     gql`
@@ -39,7 +39,9 @@ export async function getByZodiacSignAndDate({
       }
     `,
   )
-  return mapOne(allArticle[0], language)
+  if (allArticle.length > 0) {
+    return mapOne(allArticle[0], language)
+  }
 }
 
 export type GetByZodiacSignOptions = {
@@ -50,7 +52,7 @@ export type GetByZodiacSignOptions = {
 export async function getByZodiacSign({
   zodiacSign,
   language,
-}: GetByZodiacSignOptions) {
+}: GetByZodiacSignOptions): Promise<ArticleDTO | undefined> {
   const { allArticle } = await request<{ allArticle: Article[] }>(
     GRAPHQL_URL,
     gql`
@@ -76,7 +78,9 @@ export async function getByZodiacSign({
         }
       `,
   )
-  return mapOne(allArticle[0], language)
+  if (allArticle.length > 0) {
+    return mapOne(allArticle[0], language)
+  }
 }
 
 export function mapOne(article: Article, language?: string): ArticleDTO {

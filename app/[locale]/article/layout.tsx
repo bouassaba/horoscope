@@ -14,21 +14,19 @@ export default async function DefaultLayout({
   params: { locale: string }
   children: React.ReactNode
 }>) {
-  const { locale } = params
-  const cookieStore = cookies()
-  const defaultOpen = cookieStore.get('sidebar:state')?.value === 'true'
-  const zodiacSigns = await fetchAll({ language: locale })
+  const sidebarState = cookies().get('sidebar:state')?.value === 'true'
+  const zodiacSigns = await fetchAll({ language: params.locale })
 
   return (
-    <I18nProviderClient locale={locale}>
+    <I18nProviderClient locale={params.locale}>
       <AppThemeProvider
         attribute="class"
         defaultTheme="system"
         enableSystem
         disableTransitionOnChange
       >
-        <SidebarProvider defaultOpen={defaultOpen}>
-          <AppSidebar zodiacSigns={zodiacSigns} />
+        <SidebarProvider defaultOpen={sidebarState}>
+          {zodiacSigns ? <AppSidebar zodiacSigns={zodiacSigns} /> : null}
           <SidebarInset>
             <Header />
             <div className={cn('overflow-auto')}>

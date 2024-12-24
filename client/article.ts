@@ -9,17 +9,16 @@ export type FetchByZodiacSignOptions = {
 export async function fetchByZodiacSign({
   zodiacSign,
   language,
-}: FetchByZodiacSignOptions): Promise<ArticleDTO> {
+}: FetchByZodiacSignOptions): Promise<ArticleDTO | undefined> {
   const params = new URLSearchParams()
   if (language) {
     params.append('language', language)
   }
   const url = `${API_URL}/api/articles/${zodiacSign}?${params}`
   const response = await fetch(url)
-  if (!response.ok) {
-    throw new Error(`GET ${url} failed with status: ${response.status}`)
+  if (response.ok) {
+    return response.json()
   }
-  return response.json()
 }
 
 export type FetchByZodiacSignAndDateOptions = {
@@ -32,15 +31,14 @@ export async function fetchByZodiacSignAndDate({
   zodiacSign,
   date,
   language,
-}: FetchByZodiacSignAndDateOptions): Promise<ArticleDTO> {
+}: FetchByZodiacSignAndDateOptions): Promise<ArticleDTO | undefined> {
   const params = new URLSearchParams()
   if (language) {
     params.append('language', language)
   }
   const url = `${API_URL}/api/articles/${zodiacSign}/${date}?${params}`
   const response = await fetch(url)
-  if (!response.ok) {
-    throw new Error(`GET ${url} failed with status: ${response.status}`)
+  if (response.ok) {
+    return response.json()
   }
-  return response.json()
 }
