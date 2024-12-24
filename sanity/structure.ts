@@ -3,28 +3,26 @@ import type { StructureResolver } from 'sanity/structure'
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
 export const structure: StructureResolver = (S) =>
   S.list()
-    .title('Blog')
+    .title('Horoscope')
     .items([
       S.documentTypeListItem('post').title('Posts'),
-      S.documentTypeListItem('category').title('Categories'),
-      S.documentTypeListItem('author').title('Authors'),
+      S.documentTypeListItem('zodiacSign').title('Zodiac Signs'),
       S.divider(),
       ...S.documentTypeListItems().filter(
         (item) =>
-          item.getId() &&
-          !['post', 'category', 'author'].includes(item.getId()!),
+          item.getId() && !['post', 'zodiacSign'].includes(item.getId()!),
       ),
       S.listItem()
-        .title('Posts By Category')
+        .title('Posts By Zodiac Sign')
         .child(
-          S.documentTypeList('category')
-            .title('Posts by Category')
-            .child((categoryId) =>
+          S.documentTypeList('zodiacSign')
+            .title('Posts by Zodiac Sign')
+            .child((zodiacSignId) =>
               S.documentList()
                 .apiVersion('2024-06-01')
                 .title('Posts')
-                .filter('_type == "post" && $categoryId in categories[]._ref')
-                .params({ categoryId }),
+                .filter('_type == "post" && $zodiacSignId == zodiacSign._ref')
+                .params({ zodiacSignId }),
             ),
         ),
     ])
