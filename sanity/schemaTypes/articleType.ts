@@ -25,14 +25,6 @@ export const articleType = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'slug',
-      type: 'slug',
-      options: {
-        source: 'date',
-      },
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
       name: 'zodiacSign',
       type: 'reference',
       to: { type: 'zodiacSign' },
@@ -46,13 +38,14 @@ export const articleType = defineType({
   ],
   preview: {
     select: {
-      title: 'date',
+      date: 'date',
       zodiacSign: 'zodiacSign.name',
+      language: 'language',
     },
     prepare(selection) {
-      const { zodiacSign } = selection
+      const { date, zodiacSign, language } = selection
       return {
-        ...selection,
+        title: `${date} (${language})`,
         subtitle: zodiacSign,
       }
     },

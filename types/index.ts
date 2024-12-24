@@ -2,6 +2,7 @@ import { ArbitraryTypedObject, PortableTextBlock } from '@portabletext/types'
 
 export type ZodiacSign = {
   name: string
+  localeName: LocaleString
   slug: Slug
 }
 
@@ -12,17 +13,12 @@ export type ZodiacSignDTO = {
 
 export type Article = {
   date: string
-  slug: Slug
-  zodiacSign: {
-    slug: Slug
-    name: string
-  }
+  zodiacSign: ZodiacSign
   bodyRaw: Body | Body[]
 }
 
 export type ArticleDTO = {
   date: string
-  slug: string
   zodiacSign: ZodiacSignDTO
   bodyRaw: Body | Body[]
 }
@@ -30,5 +26,7 @@ export type ArticleDTO = {
 export type Slug = {
   current: string
 }
+
+export type LocaleString = { [key: string]: string }
 
 type Body = PortableTextBlock | ArbitraryTypedObject

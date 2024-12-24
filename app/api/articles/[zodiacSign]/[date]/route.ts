@@ -5,8 +5,11 @@ import {
 } from '@/services/article'
 
 export async function GET(
-  _: NextRequest,
+  request: NextRequest,
   { params }: { params: GetByZodiacSignAndDateOptions },
 ) {
-  return Response.json(await getByZodiacSignAndDate(params), { status: 200 })
+  const searchParams = request.nextUrl.searchParams
+  const locale = searchParams.get('locale') as string | undefined
+  const article = await getByZodiacSignAndDate({ ...params, locale })
+  return Response.json(article, { status: 200 })
 }

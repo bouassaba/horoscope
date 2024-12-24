@@ -10,9 +10,11 @@ const compat = new FlatCompat({
 })
 
 const eslintConfig = [
+  {
+    ignores: ['tailwind.config.ts', '.next/*'],
+  },
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
   {
-    ignores: ['tailwind.config.ts'],
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
     },
