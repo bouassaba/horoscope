@@ -1,5 +1,6 @@
 import { DocumentTextIcon } from '@sanity/icons'
 import { defineField, defineType } from 'sanity'
+import languages from '../lib/languages'
 
 export const articleType = defineType({
   name: 'article',
@@ -7,6 +8,17 @@ export const articleType = defineType({
   type: 'document',
   icon: DocumentTextIcon,
   fields: [
+    defineField({
+      name: 'language',
+      type: 'string',
+      options: {
+        list: languages.map((language) => ({
+          value: language.id,
+          title: language.name,
+        })),
+      },
+      validation: (Rule) => Rule.required(),
+    }),
     defineField({
       name: 'date',
       type: 'date',

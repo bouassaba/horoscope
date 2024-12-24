@@ -13,6 +13,10 @@ export const zodiacSignType = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'localeName',
+      type: 'localeString',
+    }),
+    defineField({
       name: 'slug',
       type: 'slug',
       options: {
