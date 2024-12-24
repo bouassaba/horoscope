@@ -26,7 +26,7 @@ export default function Header() {
         'right-0',
         'backdrop-blur',
         'bg-background/50',
-        'z-50',
+        'z-2',
         'flex',
         'h-16',
         'shrink-0',

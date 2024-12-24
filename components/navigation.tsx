@@ -23,7 +23,14 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from '@/components/ui/sidebar'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip'
 
 export type NavigationItem = {
   title: string
@@ -33,6 +40,8 @@ export type NavigationItem = {
 }
 
 export default function Navigation() {
+  const { state } = useSidebar()
+
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Zodiac Sign</SidebarGroupLabel>
@@ -40,12 +49,30 @@ export default function Navigation() {
         <SidebarMenu>
           {items.map((item, index) => (
             <SidebarMenuItem key={index}>
-              <SidebarMenuButton asChild>
-                <Link href={item.url}>
-                  {item.icon}
-                  <span>{item.title}</span>
-                </Link>
-              </SidebarMenuButton>
+              {state == 'collapsed' ? (
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <SidebarMenuButton asChild>
+                        <Link href={item.url}>
+                          {item.icon}
+                          <span>{item.title}</span>
+                        </Link>
+                      </SidebarMenuButton>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>{item.title}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              ) : (
+                <SidebarMenuButton asChild>
+                  <Link href={item.url}>
+                    {item.icon}
+                    <span>{item.title}</span>
+                  </Link>
+                </SidebarMenuButton>
+              )}
             </SidebarMenuItem>
           ))}
         </SidebarMenu>
