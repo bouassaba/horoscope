@@ -5,7 +5,7 @@ import { Article } from '@/types'
 import { map as mapSlug } from './slug'
 import { mapOne as mapZodiacSign } from './zodiac-sign'
 
-export type GetByZodiacSignAndDate = {
+export type GetByZodiacSignAndDateOptions = {
   zodiacSign: string
   date: string
 }
@@ -13,7 +13,7 @@ export type GetByZodiacSignAndDate = {
 export async function getByZodiacSignAndDate({
   zodiacSign,
   date,
-}: GetByZodiacSignAndDate) {
+}: GetByZodiacSignAndDateOptions) {
   const { allArticle } = await request<{ allArticle: Article[] }>(
     GRAPHQL_URL,
     gql`
@@ -42,11 +42,11 @@ export async function getByZodiacSignAndDate({
   return mapOne(allArticle[0])
 }
 
-export type GetByZodiacSign = {
+export type GetByZodiacSignOptions = {
   zodiacSign: string
 }
 
-export async function getByZodiacSign({ zodiacSign }: GetByZodiacSign) {
+export async function getByZodiacSign({ zodiacSign }: GetByZodiacSignOptions) {
   const { allArticle } = await request<{ allArticle: Article[] }>(
     GRAPHQL_URL,
     gql`

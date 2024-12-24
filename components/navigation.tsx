@@ -15,6 +15,7 @@ import {
   TbZodiacCapricorn,
   TbZodiacAquarius,
   TbZodiacPisces,
+  TbStar,
 } from 'react-icons/tb'
 import {
   SidebarGroup,
@@ -31,6 +32,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
+import { ZodiacSignDTO } from '@/types'
 
 export type NavigationItem = {
   title: string
@@ -39,7 +41,11 @@ export type NavigationItem = {
   isActive?: boolean
 }
 
-export default function Navigation() {
+export type NavigationProps = {
+  zodiacSigns: ZodiacSignDTO[]
+}
+
+export default function Navigation({ zodiacSigns }: NavigationProps) {
   const { state } = useSidebar()
 
   return (
@@ -47,29 +53,29 @@ export default function Navigation() {
       <SidebarGroupLabel>Zodiac Sign</SidebarGroupLabel>
       <SidebarGroupContent>
         <SidebarMenu>
-          {items.map((item, index) => (
+          {zodiacSigns.map((zodiacSign, index) => (
             <SidebarMenuItem key={index}>
               {state == 'collapsed' ? (
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <SidebarMenuButton asChild>
-                        <Link href={item.url}>
-                          {item.icon}
-                          <span>{item.title}</span>
+                        <Link href={`/article/${zodiacSign.slug}`}>
+                          {getZodiacSignIcon(zodiacSign.slug)}
+                          <span>{zodiacSign.name}</span>
                         </Link>
                       </SidebarMenuButton>
                     </TooltipTrigger>
                     <TooltipContent>
-                      <p>{item.title}</p>
+                      <p>{zodiacSign.name}</p>
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
               ) : (
                 <SidebarMenuButton asChild>
-                  <Link href={item.url}>
-                    {item.icon}
-                    <span>{item.title}</span>
+                  <Link href={`/article/${zodiacSign.slug}`}>
+                    {getZodiacSignIcon(zodiacSign.slug)}
+                    <span>{zodiacSign.name}</span>
                   </Link>
                 </SidebarMenuButton>
               )}
@@ -81,66 +87,33 @@ export default function Navigation() {
   )
 }
 
-const items: NavigationItem[] = [
-  {
-    title: 'Scorpio',
-    url: '/article/scorpio',
-    icon: <TbZodiacScorpio />,
-    isActive: true,
-  },
-  {
-    title: 'Aries',
-    url: '#',
-    icon: <TbZodiacAries />,
-  },
-  {
-    title: 'Taurus',
-    url: '#',
-    icon: <TbZodiacTaurus />,
-  },
-  {
-    title: 'Gemini',
-    url: '#',
-    icon: <TbZodiacGemini />,
-  },
-  {
-    title: 'Cancer',
-    url: '#',
-    icon: <TbZodiacCancer />,
-  },
-  {
-    title: 'Leo',
-    url: '#',
-    icon: <TbZodiacLeo />,
-  },
-  {
-    title: 'Virgo',
-    url: '#',
-    icon: <TbZodiacVirgo />,
-  },
-  {
-    title: 'Libra',
-    url: '#',
-    icon: <TbZodiacLibra />,
-  },
-  {
-    title: 'Sagittarius',
-    url: '#',
-    icon: <TbZodiacSagittarius />,
-  },
-  {
-    title: 'Capricorn',
-    url: '#',
-    icon: <TbZodiacCapricorn />,
-  },
-  {
-    title: 'Aquarius',
-    url: '#',
-    icon: <TbZodiacAquarius />,
-  },
-  {
-    title: 'Pisces',
-    url: '#',
-    icon: <TbZodiacPisces />,
-  },
-]
+function getZodiacSignIcon(slug: string): ReactElement {
+  switch (slug) {
+    case 'scorpio':
+      return <TbZodiacScorpio />
+    case 'aries':
+      return <TbZodiacAries />
+    case 'taurus':
+      return <TbZodiacTaurus />
+    case 'gemini':
+      return <TbZodiacGemini />
+    case 'cancer':
+      return <TbZodiacCancer />
+    case 'leo':
+      return <TbZodiacLeo />
+    case 'virgo':
+      return <TbZodiacVirgo />
+    case 'libra':
+      return <TbZodiacLibra />
+    case 'sagittarius':
+      return <TbZodiacSagittarius />
+    case 'capricorn':
+      return <TbZodiacCapricorn />
+    case 'aquarius':
+      return <TbZodiacAquarius />
+    case 'pisces':
+      return <TbZodiacPisces />
+    default:
+      return <TbStar />
+  }
+}

@@ -1,6 +1,5 @@
 'use client'
 
-import { ComponentProps } from 'react'
 import { useRouter } from 'next/navigation'
 import { Sparkle } from 'lucide-react'
 import Navigation from '@/components/navigation'
@@ -13,15 +12,18 @@ import {
 } from '@/components/ui/sidebar'
 import { cn } from '@/lib/utils'
 import { useScopedI18n } from '@/locales/client'
+import { ZodiacSignDTO } from '@/types'
 
-export default function AppSidebar({
-  ...props
-}: ComponentProps<typeof Sidebar>) {
+export type AppSidebarProps = {
+  zodiacSigns: ZodiacSignDTO[]
+}
+
+export default function AppSidebar({ zodiacSigns }: AppSidebarProps) {
   const router = useRouter()
   const t = useScopedI18n('sidebar')
 
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar collapsible="icon">
       <SidebarHeader>
         <SidebarMenuButton
           size="lg"
@@ -62,7 +64,7 @@ export default function AppSidebar({
         </SidebarMenuButton>
       </SidebarHeader>
       <SidebarContent>
-        <Navigation />
+        <Navigation zodiacSigns={zodiacSigns} />
       </SidebarContent>
       <SidebarRail />
     </Sidebar>

@@ -1,12 +1,12 @@
 import { type NextRequest } from 'next/server'
 import {
-  GetByZodiacSignAndDate,
+  GetByZodiacSignAndDateOptions,
   getByZodiacSignAndDate,
 } from '@/services/article'
 
 export async function GET(
   _: NextRequest,
-  { params }: { params: GetByZodiacSignAndDate },
+  { params }: { params: GetByZodiacSignAndDateOptions },
 ) {
   return Response.json(await getByZodiacSignAndDate(params), { status: 200 })
 }

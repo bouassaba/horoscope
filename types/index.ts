@@ -5,6 +5,11 @@ export type ZodiacSign = {
   slug: Slug
 }
 
+export type ZodiacSignDTO = {
+  name: string
+  slug: string
+}
+
 export type Article = {
   date: string
   slug: Slug
@@ -12,6 +17,13 @@ export type Article = {
     slug: Slug
     name: string
   }
+  bodyRaw: Body | Body[]
+}
+
+export type ArticleDTO = {
+  date: string
+  slug: string
+  zodiacSign: ZodiacSignDTO
   bodyRaw: Body | Body[]
 }
 

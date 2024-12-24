@@ -1,9 +1,9 @@
 import { NextRequest } from 'next/server'
-import { GetByZodiacSign, getByZodiacSign } from '@/services/article'
+import { GetByZodiacSignOptions, getByZodiacSign } from '@/services/article'
 
 export async function GET(
   _: NextRequest,
-  { params }: { params: GetByZodiacSign },
+  { params }: { params: GetByZodiacSignOptions },
 ) {
   return Response.json(await getByZodiacSign(params), { status: 200 })
 }

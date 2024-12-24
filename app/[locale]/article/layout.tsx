@@ -1,4 +1,5 @@
 import { cookies } from 'next/headers'
+import { fetchAll } from '@/client/zodiac-sign'
 import AppSidebar from '@/components/app-sidebar'
 import AppThemeProvider from '@/components/app-theme-provider'
 import Header from '@/components/header'
@@ -6,7 +7,7 @@ import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
 import { cn } from '@/lib/utils'
 import { I18nProviderClient } from '@/locales/client'
 
-export default function DefaultLayout({
+export default async function DefaultLayout({
   params,
   children,
 }: Readonly<{
@@ -16,6 +17,7 @@ export default function DefaultLayout({
   const { locale } = params
   const cookieStore = cookies()
   const defaultOpen = cookieStore.get('sidebar:state')?.value === 'true'
+  const zodiacSigns = await fetchAll()
 
   return (
     <I18nProviderClient locale={locale}>
@@ -26,7 +28,7 @@ export default function DefaultLayout({
         disableTransitionOnChange
       >
         <SidebarProvider defaultOpen={defaultOpen}>
-          <AppSidebar />
+          <AppSidebar zodiacSigns={zodiacSigns} />
           <SidebarInset>
             <Header />
             <div className={cn('overflow-auto')}>
