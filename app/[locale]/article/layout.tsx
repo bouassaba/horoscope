@@ -17,7 +17,7 @@ export default async function DefaultLayout({
   const { locale } = params
   const cookieStore = cookies()
   const defaultOpen = cookieStore.get('sidebar:state')?.value === 'true'
-  const zodiacSigns = await fetchAll()
+  const zodiacSigns = await fetchAll({ language: locale })
 
   return (
     <I18nProviderClient locale={locale}>

@@ -18,15 +18,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function SlugPage({ params }: Props) {
-  const locale = getCurrentLocale()
+  const locale = await getCurrentLocale()
   const { zodiacSign } = params
-  const article = await fetchByZodiacSign({ zodiacSign })
+  const article = await fetchByZodiacSign({ zodiacSign, language: locale })
 
   return (
     <article className={cn('prose', 'dark:prose-invert')}>
-      <h1>
-        {article.zodiacSign.name} ({locale})
-      </h1>
+      <h1>{article.zodiacSign.name}</h1>
       <PortableText value={article.bodyRaw} />
     </article>
   )

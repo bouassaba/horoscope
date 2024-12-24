@@ -65,17 +65,18 @@ export async function getByZodiacSign({
           ) {
             date
             zodiacSign {
+              name
+              ${language && language !== 'en' ? `localeName { ${language} }` : ''}
               slug {
                 current
               }
-              name
             }
             bodyRaw
           }
         }
       `,
   )
-  return mapOne(allArticle[0])
+  return mapOne(allArticle[0], language)
 }
 
 export function mapOne(article: Article, language?: string): ArticleDTO {
