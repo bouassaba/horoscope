@@ -7,13 +7,13 @@ import { mapOne as mapZodiacSign } from './zodiac-sign'
 export type GetByZodiacSignAndDateOptions = {
   zodiacSign: string
   date: string
-  locale?: string
+  language?: string
 }
 
 export async function getByZodiacSignAndDate({
   zodiacSign,
   date,
-  locale,
+  language,
 }: GetByZodiacSignAndDateOptions) {
   const { allArticle } = await request<{ allArticle: Article[] }>(
     GRAPHQL_URL,
@@ -23,13 +23,13 @@ export async function getByZodiacSignAndDate({
           where: {
             zodiacSign: { slug: { current: { eq: "${zodiacSign}" } } }
             date: { eq: "${date}" }
-            ${locale ? `language: { eq: "${locale}" }` : ''}
+            ${language ? `language: { eq: "${language}" }` : ''}
           }
         ) {
           date
           zodiacSign {
             name
-            ${locale && locale !== 'en' ? `localeName { ${locale} }` : ''}
+            ${language && language !== 'en' ? `localeName { ${language} }` : ''}
             slug {
               current
             }
@@ -39,17 +39,17 @@ export async function getByZodiacSignAndDate({
       }
     `,
   )
-  return mapOne(allArticle[0], locale)
+  return mapOne(allArticle[0], language)
 }
 
 export type GetByZodiacSignOptions = {
   zodiacSign: string
-  locale?: string
+  language?: string
 }
 
 export async function getByZodiacSign({
   zodiacSign,
-  locale,
+  language,
 }: GetByZodiacSignOptions) {
   const { allArticle } = await request<{ allArticle: Article[] }>(
     GRAPHQL_URL,
@@ -58,7 +58,7 @@ export async function getByZodiacSign({
           allArticle(
             where: {
               zodiacSign: { slug: { current: { eq: "${zodiacSign}" } } }
-              ${locale ? `language: { eq: "${locale}" }` : ''}
+              ${language ? `language: { eq: "${language}" }` : ''}
             }
             sort: { date: DESC }
             limit: 1
@@ -78,10 +78,10 @@ export async function getByZodiacSign({
   return mapOne(allArticle[0])
 }
 
-export function mapOne(article: Article, locale?: string): ArticleDTO {
+export function mapOne(article: Article, language?: string): ArticleDTO {
   return {
     date: article.date,
     bodyRaw: article.bodyRaw,
-    zodiacSign: mapZodiacSign(article.zodiacSign, locale),
+    zodiacSign: mapZodiacSign(article.zodiacSign, language),
   }
 }

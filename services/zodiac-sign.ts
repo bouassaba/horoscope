@@ -5,17 +5,17 @@ import { ZodiacSign, ZodiacSignDTO } from '@/types'
 import { map as mapSlug } from './slug'
 
 export type GetAllOptions = {
-  locale?: string
+  language?: string
 }
 
-export async function getAll({ locale }: GetAllOptions) {
+export async function getAll({ language }: GetAllOptions) {
   const { allZodiacSign } = await request<{ allZodiacSign: ZodiacSign[] }>(
     GRAPHQL_URL,
     gql`
       {
         allZodiacSign {
           name
-          ${locale && locale !== 'en' ? `localeName { ${locale} }` : ''}
+          ${language && language !== 'en' ? `localeName { ${language} }` : ''}
           slug {
             current
           }
@@ -23,21 +23,24 @@ export async function getAll({ locale }: GetAllOptions) {
       }
     `,
   )
-  return mapMany(allZodiacSign, locale)
+  return mapMany(allZodiacSign, language)
 }
 
 export function mapMany(
   zodiacSigns: ZodiacSign[],
-  locale?: string,
+  language?: string,
 ): ZodiacSignDTO[] {
-  return zodiacSigns.map((zodiacSign) => mapOne(zodiacSign, locale))
+  return zodiacSigns.map((zodiacSign) => mapOne(zodiacSign, language))
 }
 
-export function mapOne(zodiacSign: ZodiacSign, locale?: string): ZodiacSignDTO {
+export function mapOne(
+  zodiacSign: ZodiacSign,
+  language?: string,
+): ZodiacSignDTO {
   return {
     name:
-      locale && zodiacSign.localeName?.[locale]
-        ? zodiacSign.localeName[locale]
+      language && zodiacSign.localeName?.[language]
+        ? zodiacSign.localeName[language]
         : zodiacSign.name,
     slug: mapSlug(zodiacSign.slug),
   }

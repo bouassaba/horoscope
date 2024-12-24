@@ -9,7 +9,7 @@ export async function GET(
   { params }: { params: GetByZodiacSignAndDateOptions },
 ) {
   const searchParams = request.nextUrl.searchParams
-  const locale = searchParams.get('locale') as string | undefined
-  const article = await getByZodiacSignAndDate({ ...params, locale })
-  return Response.json(article, { status: 200 })
+  const language = searchParams.get('language') as string | undefined
+  const result = await getByZodiacSignAndDate({ ...params, language })
+  return Response.json(result, { status: 200 })
 }
