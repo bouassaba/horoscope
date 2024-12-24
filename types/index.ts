@@ -5,7 +5,7 @@ export type ZodiacSign = {
   slug: Slug
 }
 
-export type Post = {
+export type Article = {
   date: string
   slug: Slug
   zodiacSign: {

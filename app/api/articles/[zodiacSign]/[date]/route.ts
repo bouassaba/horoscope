@@ -2,8 +2,8 @@ import { type NextRequest } from 'next/server'
 import { request } from 'graphql-request'
 import gql from 'graphql-tag'
 import { GRAPHQL_URL } from '@/config'
-import { mapOne as mapPost } from '@/services/post'
-import { Post } from '@/types'
+import { mapOne as mapArticle } from '@/services/article'
+import { Article } from '@/types'
 
 type Params = {
   zodiacSign: string
@@ -12,11 +12,11 @@ type Params = {
 
 export async function GET(_: NextRequest, { params }: { params: Params }) {
   const { zodiacSign, date } = params
-  const { allPost } = await request<{ allPost: Post[] }>(
+  const { allArticle } = await request<{ allArticle: Article[] }>(
     GRAPHQL_URL,
     gql`
       {
-        allPost(
+        allArticle(
           where: {
             zodiacSign: { slug: { current: { eq: "${zodiacSign}" } } }
             date: { eq: "${date}" }
@@ -37,5 +37,5 @@ export async function GET(_: NextRequest, { params }: { params: Params }) {
       }
     `,
   )
-  return Response.json(mapPost(allPost[0]), { status: 200 })
+  return Response.json(mapArticle(allArticle[0]), { status: 200 })
 }
