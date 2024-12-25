@@ -2,6 +2,7 @@
 
 import { ReactElement } from 'react'
 import Link from 'next/link'
+import { useParams } from 'next/navigation'
 import {
   TbZodiacScorpio,
   TbZodiacAries,
@@ -46,6 +47,7 @@ export type NavigationProps = {
 }
 
 export default function Navigation({ zodiacSigns }: NavigationProps) {
+  const { zodiacSign: slug } = useParams<{ zodiacSign?: string }>()
   const { state } = useSidebar()
 
   return (
@@ -59,7 +61,10 @@ export default function Navigation({ zodiacSigns }: NavigationProps) {
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <SidebarMenuButton asChild>
+                      <SidebarMenuButton
+                        asChild
+                        isActive={zodiacSign.slug === slug}
+                      >
                         <Link href={`/article/${zodiacSign.slug}`}>
                           {getZodiacSignIcon(zodiacSign.slug)}
                           <span>{zodiacSign.name}</span>
@@ -72,7 +77,7 @@ export default function Navigation({ zodiacSigns }: NavigationProps) {
                   </Tooltip>
                 </TooltipProvider>
               ) : (
-                <SidebarMenuButton asChild>
+                <SidebarMenuButton asChild isActive={zodiacSign.slug === slug}>
                   <Link href={`/article/${zodiacSign.slug}`}>
                     {getZodiacSignIcon(zodiacSign.slug)}
                     <span>{zodiacSign.name}</span>

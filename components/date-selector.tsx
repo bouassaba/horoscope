@@ -16,9 +16,10 @@ import { ZodiacSignDTO } from '@/types'
 
 export type DateSelectorProps = {
   zodiacSign: ZodiacSignDTO
+  date?: string
 }
 
-export default function DateSelector({ zodiacSign }: DateSelectorProps) {
+export default function DateSelector({ zodiacSign, date }: DateSelectorProps) {
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
 
@@ -52,6 +53,7 @@ export default function DateSelector({ zodiacSign }: DateSelectorProps) {
       <PopoverContent className={cn('w-auto', 'p-0')}>
         <Calendar
           mode="single"
+          selected={date ? new Date(date) : undefined}
           onSelect={handleDateSelect}
           disabled={(date) =>
             date > new Date() || date < new Date('1900-01-01')

@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { useParams } from 'next/navigation'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -23,6 +24,7 @@ export type HeaderProps = {
 }
 
 export default function Header({ zodiacSign }: HeaderProps) {
+  const { date } = useParams<{ date?: string }>()
   const t = useScopedI18n('header')
 
   return (
@@ -66,7 +68,9 @@ export default function Header({ zodiacSign }: HeaderProps) {
           </>
         ) : null}
         <div className={cn('grow', 'h-10')} />
-        {zodiacSign ? <DateSelector zodiacSign={zodiacSign} /> : null}
+        {zodiacSign ? (
+          <DateSelector zodiacSign={zodiacSign} date={date} />
+        ) : null}
         <LanguageSelector />
         <ThemeToggle />
       </div>
