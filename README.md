@@ -13,7 +13,7 @@ To start, choose a zodiac sign from the left sidebar, the sidebar can be collaps
 
 Once you choose a zodiac sign, a default page for the sign will be displayed. For example, for Scorpio the URL will be [/article/scorpio](https://tryhoroscope.vercel.app/article/scorpio), this page automatically picks the latest prediction date available for that sign.
 
- To change the date, click the calendar button on the header, then choose a date, the URL will be something like: [/article/scorpio/2024-12-18](https://tryhoroscope.vercel.app/article/scorpio/2024-12-18), if the predictions for that date are not available, you will be redirected to [/article/not-found](https://tryhoroscope.vercel.app/article/not-found) page that tells you: *"The stars are keeping this a secret."* 😁
+To change the date, click the calendar button on the header, then choose a date, the URL will be something like: [/article/scorpio/2024-12-18](https://tryhoroscope.vercel.app/article/scorpio/2024-12-18), if the predictions for that date are not available, you will be redirected to [/article/not-found](https://tryhoroscope.vercel.app/article/not-found) page that tells you: _"The stars are keeping this a secret."_ 😁
 
 By default, the app will detect the language of your browser, but you can change that by clicking the language dropdown on the header, currently English and German are supported.
 
@@ -34,7 +34,7 @@ Just navigate to [/studio](https://tryhoroscope.vercel.app/studio) and you are r
 ## Technical Capabilities
 
 - URLs are SEO friendly, memorizable and simple for sharing with friends and family.
-- Article pages are rendered server-side with Next.js, this greatly improves [TTFB](https://web.dev/articles/ttfb) and SEO. 
+- Article pages are rendered server-side with Next.js, this greatly improves [TTFB](https://web.dev/articles/ttfb) and SEO.
 
 ## Tech Stack
 

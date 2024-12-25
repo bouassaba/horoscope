@@ -33,6 +33,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
+import { useScopedI18n } from '@/locales/client'
 import { ZodiacSignDTO } from '@/types'
 
 export type NavigationItem = {
@@ -49,6 +50,7 @@ export type NavigationProps = {
 export default function Navigation({ zodiacSigns }: NavigationProps) {
   const { slug } = useParams<{ slug?: string }>()
   const { state, setOpenMobile, isMobile } = useSidebar()
+  const t = useScopedI18n('sidebar')
 
   const handleButtonClick = useCallback(() => {
     if (isMobile) {
@@ -58,7 +60,7 @@ export default function Navigation({ zodiacSigns }: NavigationProps) {
 
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Zodiac Sign</SidebarGroupLabel>
+      <SidebarGroupLabel>{t('groupLabel')}</SidebarGroupLabel>
       <SidebarGroupContent>
         <SidebarMenu>
           {zodiacSigns.map((zodiacSign, index) => (
