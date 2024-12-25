@@ -1,7 +1,7 @@
 'use client'
 
 import { useCallback, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import { formatISO } from 'date-fns'
 import { CalendarIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -12,26 +12,21 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover'
 import { cn } from '@/lib/utils'
-import { ZodiacSignDTO } from '@/types'
 
-export type DateSelectorProps = {
-  zodiacSign: ZodiacSignDTO
-  date?: string
-}
-
-export default function DateSelector({ zodiacSign, date }: DateSelectorProps) {
+export default function DateSelector() {
   const router = useRouter()
+  const { slug, date } = useParams<{ slug?: string; date?: string }>()
   const [isOpen, setIsOpen] = useState(false)
 
   const handleDateSelect = useCallback(
     (date?: Date) => {
-      if (date) {
+      if (date && slug) {
         const isoDate = formatISO(date, { representation: 'date' })
-        router.push(`/article/${zodiacSign.slug}/${isoDate}`)
+        router.push(`/article/${slug}/${isoDate}`)
         setIsOpen(false)
       }
     },
-    [zodiacSign, router],
+    [slug, router],
   )
 
   return (

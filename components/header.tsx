@@ -2,6 +2,8 @@
 
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
+import useSWR from 'swr'
+import { fetchBySlug } from '@/client/zodiac-sign'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -14,18 +16,17 @@ import { Separator } from '@/components/ui/separator'
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import { cn } from '@/lib/utils'
 import { useScopedI18n } from '@/locales/client'
-import { ZodiacSignDTO } from '@/types'
 import DateSelector from './date-selector'
 import LanguageSelector from './language-selector'
 import ThemeToggle from './theme-toggle'
 
-export type HeaderProps = {
-  zodiacSign?: ZodiacSignDTO
-}
-
-export default function Header({ zodiacSign }: HeaderProps) {
-  const { date } = useParams<{ date?: string }>()
+export default function Header() {
   const t = useScopedI18n('header')
+  const { slug, locale } = useParams<{ slug?: string; locale: string }>()
+  const { data: zodiacSign } = useSWR(
+    slug ? `/zodiac-signs/${slug}?language=${locale}` : null,
+    () => fetchBySlug({ slug: slug!, language: locale }),
+  )
 
   return (
     <header
@@ -68,9 +69,7 @@ export default function Header({ zodiacSign }: HeaderProps) {
           </>
         ) : null}
         <div className={cn('grow', 'h-10')} />
-        {zodiacSign ? (
-          <DateSelector zodiacSign={zodiacSign} date={date} />
-        ) : null}
+        {zodiacSign ? <DateSelector /> : null}
         <LanguageSelector />
         <ThemeToggle />
       </div>

@@ -1,10 +1,7 @@
 import type { Metadata } from 'next'
 import { PortableText } from '@portabletext/react'
 import { capitalCase } from 'change-case'
-import {
-  fetchByZodiacSignAndDate,
-  FetchByZodiacSignAndDateOptions,
-} from '@/client/article'
+import { fetchByZodiacSignAndDate } from '@/client/article'
 import { cn } from '@/lib/utils'
 
 type Props = {
@@ -12,8 +9,10 @@ type Props = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
-type Params = FetchByZodiacSignAndDateOptions & {
+type Params = {
   locale: string
+  slug: string
+  date: string
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

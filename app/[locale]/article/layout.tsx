@@ -2,19 +2,18 @@ import { cookies } from 'next/headers'
 import { fetchAll } from '@/client/zodiac-sign'
 import AppSidebar from '@/components/app-sidebar'
 import AppThemeProvider from '@/components/app-theme-provider'
+import Header from '@/components/header'
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
+import { cn } from '@/lib/utils'
 import { I18nProviderClient } from '@/locales/client'
 
-type Props = Readonly<{
-  params: Params
+export default async function ArticleLayout({
+  params,
+  children,
+}: Readonly<{
+  params: { locale: string }
   children: React.ReactNode
-}>
-
-type Params = {
-  locale: string
-}
-
-export default async function ArticleLayout({ params, children }: Props) {
+}>) {
   const sidebarState = cookies().get('sidebar:state')?.value === 'true'
   const zodiacSigns = await fetchAll({ language: params.locale })
 
@@ -28,7 +27,16 @@ export default async function ArticleLayout({ params, children }: Props) {
       >
         <SidebarProvider defaultOpen={sidebarState}>
           {zodiacSigns ? <AppSidebar zodiacSigns={zodiacSigns} /> : null}
-          <SidebarInset>{children}</SidebarInset>
+          <SidebarInset>
+            <Header />
+            <div className={cn('overflow-auto')}>
+              <div
+                className={cn('flex', 'justify-center', 'px-4', 'py-20', 'z-1')}
+              >
+                {children}
+              </div>
+            </div>
+          </SidebarInset>
         </SidebarProvider>
       </AppThemeProvider>
     </I18nProviderClient>
