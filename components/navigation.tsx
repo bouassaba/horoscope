@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactElement } from 'react'
+import { ReactElement, useCallback } from 'react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import {
@@ -48,7 +48,13 @@ export type NavigationProps = {
 
 export default function Navigation({ zodiacSigns }: NavigationProps) {
   const { slug } = useParams<{ slug?: string }>()
-  const { state } = useSidebar()
+  const { state, setOpenMobile, isMobile } = useSidebar()
+
+  const handleButtonClick = useCallback(() => {
+    if (isMobile) {
+      setOpenMobile(false)
+    }
+  }, [isMobile, setOpenMobile])
 
   return (
     <SidebarGroup>
@@ -64,6 +70,7 @@ export default function Navigation({ zodiacSigns }: NavigationProps) {
                       <SidebarMenuButton
                         asChild
                         isActive={zodiacSign.slug === slug}
+                        onClick={handleButtonClick}
                       >
                         <Link href={`/article/${zodiacSign.slug}`}>
                           {getZodiacSignIcon(zodiacSign.slug)}
@@ -77,7 +84,11 @@ export default function Navigation({ zodiacSigns }: NavigationProps) {
                   </Tooltip>
                 </TooltipProvider>
               ) : (
-                <SidebarMenuButton asChild isActive={zodiacSign.slug === slug}>
+                <SidebarMenuButton
+                  asChild
+                  isActive={zodiacSign.slug === slug}
+                  onClick={handleButtonClick}
+                >
                   <Link href={`/article/${zodiacSign.slug}`}>
                     {getZodiacSignIcon(zodiacSign.slug)}
                     <span>{zodiacSign.name}</span>
