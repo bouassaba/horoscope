@@ -20,6 +20,7 @@ export const metadata: Metadata = {
     },
   ],
 }
+export const dynamic = 'force-dynamic'
 
 type Props = Readonly<{
   children: React.ReactNode
@@ -39,5 +40,3 @@ export default function RootLayout({ params, children }: Props) {
     </html>
   )
 }
-
-export const dynamic = 'force-dynamic'
