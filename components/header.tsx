@@ -14,6 +14,7 @@ import {
 } from '@/components/ui/breadcrumb'
 import { Separator } from '@/components/ui/separator'
 import { SidebarTrigger } from '@/components/ui/sidebar'
+import { Skeleton } from '@/components/ui/skeleton'
 import { cn } from '@/lib/utils'
 import { useScopedI18n } from '@/locales/client'
 import DateSelector from './date-selector'
@@ -23,7 +24,7 @@ import ThemeToggle from './theme-toggle'
 export default function Header() {
   const t = useScopedI18n('header')
   const { slug, locale } = useParams<{ slug?: string; locale: string }>()
-  const { data: zodiacSign } = useSWR(
+  const { data: zodiacSign, isLoading } = useSWR(
     slug ? `/zodiac-signs/${slug}?language=${locale}` : null,
     () => fetchBySlug({ slug: slug!, language: locale }),
   )
@@ -50,6 +51,12 @@ export default function Header() {
     >
       <div className={cn('w-full', 'flex', 'items-center', 'gap-2', 'px-4')}>
         <SidebarTrigger className={cn('-ml-1')} />
+        {isLoading ? (
+          <>
+            <Separator className={cn('mr-2', 'h-4')} orientation="vertical" />
+            <Skeleton className="h-[20px] w-[160px]" />
+          </>
+        ) : null}
         {zodiacSign ? (
           <>
             <Separator className={cn('mr-2', 'h-4')} orientation="vertical" />
