@@ -21,7 +21,11 @@ import DateSelector from './date-selector'
 import LanguageSelector from './language-selector'
 import ThemeToggle from './theme-toggle'
 
-export default function Header() {
+export type HeaderProps = {
+  transparent?: boolean
+}
+
+export default function Header({ transparent }: HeaderProps) {
   const t = useScopedI18n('header')
   const { slug, locale } = useParams<{ slug?: string; locale: string }>()
   const { data: zodiacSign, isLoading } = useSWR(
@@ -36,11 +40,12 @@ export default function Header() {
         'top-0',
         'left-0',
         'right-0',
-        'backdrop-blur',
-        'bg-background/50',
-        'z-2',
+        { 'backdrop-blur': !transparent },
+        { 'bg-background/50': !transparent },
+        'z-50',
         'flex',
         'h-16',
+        'min-h-16',
         'shrink-0',
         'items-center',
         'gap-2',
@@ -50,7 +55,9 @@ export default function Header() {
       )}
     >
       <div className={cn('w-full', 'flex', 'items-center', 'gap-2', 'px-4')}>
-        <SidebarTrigger className={cn('-ml-1')} />
+        <SidebarTrigger
+          className={cn('-ml-1', { 'text-white': transparent })}
+        />
         {isLoading ? (
           <>
             <Separator className={cn('mr-2', 'h-4')} orientation="vertical" />

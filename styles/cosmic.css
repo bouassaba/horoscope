@@ -1,0 +1,22 @@
+/* Cosmic Glowing Animation */
+.cosmic {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: linear-gradient(120deg, #ff00cc, #3333ff, #ffcc00, #33ffcc);
+  background-size: 400% 400%;
+  animation: cosmic-glow 10s ease infinite;
+}
+
+@keyframes cosmic-glow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

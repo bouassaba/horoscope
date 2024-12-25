@@ -1,5 +1,6 @@
 'use client'
 
+import { useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { Sparkle } from 'lucide-react'
 import Navigation from '@/components/navigation'
@@ -9,6 +10,7 @@ import {
   SidebarHeader,
   SidebarMenuButton,
   SidebarRail,
+  useSidebar,
 } from '@/components/ui/sidebar'
 import { cn } from '@/lib/utils'
 import { useScopedI18n } from '@/locales/client'
@@ -21,6 +23,14 @@ export type AppSidebarProps = {
 export default function AppSidebar({ zodiacSigns }: AppSidebarProps) {
   const router = useRouter()
   const t = useScopedI18n('sidebar')
+  const { setOpenMobile, isMobile } = useSidebar()
+
+  const handleMenuButtonClick = useCallback(() => {
+    if (isMobile) {
+      setOpenMobile(false)
+    }
+    router.push('/article')
+  }, [router, isMobile, setOpenMobile])
 
   return (
     <Sidebar collapsible="icon">
@@ -31,7 +41,7 @@ export default function AppSidebar({ zodiacSigns }: AppSidebarProps) {
             'data-[state=open]:bg-sidebar-accent',
             'data-[state=open]:text-sidebar-accent-foreground',
           )}
-          onClick={() => router.push('/article')}
+          onClick={handleMenuButtonClick}
         >
           <div
             className={cn(
