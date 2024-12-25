@@ -26,6 +26,31 @@ export async function getAll({ language }: GetAllOptions) {
   return mapMany(allZodiacSign, language)
 }
 
+export type GetBySlugOptions = {
+  slug: string
+  language?: string
+}
+
+export async function getBySlug({ slug, language }: GetBySlugOptions) {
+  const { allZodiacSign } = await request<{ allZodiacSign: ZodiacSign[] }>(
+    GRAPHQL_URL,
+    gql`
+      {
+        allZodiacSign(where: { slug: { current: { eq: "${slug}" } } }) {
+          name
+          ${language && language !== 'en' ? `localeName { ${language} }` : ''}
+          slug {
+            current
+          }
+        }
+      }
+    `,
+  )
+  if (allZodiacSign.length > 0) {
+    return mapOne(allZodiacSign[0], language)
+  }
+}
+
 export function mapMany(
   zodiacSigns: ZodiacSign[],
   language?: string,

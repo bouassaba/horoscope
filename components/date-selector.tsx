@@ -12,9 +12,10 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover'
 import { cn } from '@/lib/utils'
+import { ZodiacSignDTO } from '@/types'
 
 export type DateSelectorProps = {
-  zodiacSign: string
+  zodiacSign: ZodiacSignDTO
 }
 
 export default function DateSelector({ zodiacSign }: DateSelectorProps) {
@@ -25,7 +26,7 @@ export default function DateSelector({ zodiacSign }: DateSelectorProps) {
     (date?: Date) => {
       if (date) {
         const isoDate = formatISO(date, { representation: 'date' })
-        router.push(`/article/${zodiacSign}/${isoDate}`)
+        router.push(`/article/${zodiacSign.slug}/${isoDate}`)
         setIsOpen(false)
       }
     },

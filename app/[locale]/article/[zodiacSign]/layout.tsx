@@ -1,3 +1,4 @@
+import { fetchBySlug } from '@/client/zodiac-sign'
 import Header from '@/components/header'
 import { cn } from '@/lib/utils'
 
@@ -11,10 +12,18 @@ type Params = {
   locale: string
 }
 
-export default function ArticleByZodiacSignLayout({ params, children }: Props) {
+export default async function ArticleByZodiacSignLayout({
+  params,
+  children,
+}: Props) {
+  const zodiacSign = await fetchBySlug({
+    slug: params.zodiacSign,
+    language: params.locale,
+  })
+
   return (
     <>
-      <Header zodiacSign={params.zodiacSign} />
+      <Header zodiacSign={zodiacSign} />
       <div className={cn('overflow-auto')}>
         <div className={cn('flex', 'justify-center', 'px-4', 'py-20', 'z-1')}>
           {children}

@@ -12,15 +12,19 @@ import {
 import { Separator } from '@/components/ui/separator'
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import { cn } from '@/lib/utils'
+import { useScopedI18n } from '@/locales/client'
+import { ZodiacSignDTO } from '@/types'
 import DateSelector from './date-selector'
 import LanguageSelector from './language-selector'
 import ThemeToggle from './theme-toggle'
 
 export type HeaderProps = {
-  zodiacSign: string
+  zodiacSign?: ZodiacSignDTO
 }
 
 export default function Header({ zodiacSign }: HeaderProps) {
+  const t = useScopedI18n('header')
+
   return (
     <header
       className={cn(
@@ -43,22 +47,26 @@ export default function Header({ zodiacSign }: HeaderProps) {
     >
       <div className={cn('w-full', 'flex', 'items-center', 'gap-2', 'px-4')}>
         <SidebarTrigger className={cn('-ml-1')} />
-        <Separator className={cn('mr-2', 'h-4')} orientation="vertical" />
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem className={cn('hidden', 'md:block')}>
-              <BreadcrumbLink asChild>
-                <Link href="/">Zodiac Sign</Link>
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator className={cn('hidden', 'md:block')} />
-            <BreadcrumbItem>
-              <BreadcrumbPage>Scorpio</BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
+        {zodiacSign ? (
+          <>
+            <Separator className={cn('mr-2', 'h-4')} orientation="vertical" />
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem className={cn('hidden', 'md:block')}>
+                  <BreadcrumbLink asChild>
+                    <Link href="/">{t('breadcrumbRoot')}</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator className={cn('hidden', 'md:block')} />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>{zodiacSign.name}</BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+          </>
+        ) : null}
         <div className={cn('grow', 'h-10')} />
-        <DateSelector zodiacSign={zodiacSign} />
+        {zodiacSign ? <DateSelector zodiacSign={zodiacSign} /> : null}
         <LanguageSelector />
         <ThemeToggle />
       </div>
