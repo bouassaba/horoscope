@@ -1,9 +1,9 @@
 # Horoscope
 
 This is the most beautiful horoscope app that can ever be built in a couple of days!
-I gave it my best, and I hope you like 😊
+I gave it my best, and I hope you like it 😊
 
-It's available live at: https://tryhoroscope.vercel.app
+It's available live at: [tryhoroscope.vercel.app](https://tryhoroscope.vercel.app)
 
 ## Preface
 
@@ -11,9 +11,9 @@ When you open the app, you will be greeted by an immersive cosmic animation on t
 
 To start, choose a zodiac sign from the left sidebar, the sidebar can be collapsed or expanded by clicking the rectangular button near the logo.
 
-Once you choose a zodiac sign, a default page for the sign will be displayed. For example, for scorpio the URL will be [/article/scorpio](https://tryhoroscope.vercel.app/article/scorpio), this page automatically picks the latest prediction date available for that sign.
+Once you choose a zodiac sign, a default page for the sign will be displayed. For example, for Scorpio the URL will be [/article/scorpio](https://tryhoroscope.vercel.app/article/scorpio), this page automatically picks the latest prediction date available for that sign.
 
- To change the date, click the calendar button on the header, then choose a date, the URL will be something like: [/article/scorpio/2024-12-18](https://tryhoroscope.vercel.app/article/scorpio/2024-12-18), if the predictions for that date are not available, you will be redirected to [/article/not-found](https://tryhoroscope.vercel.app/article/not-found) page that tells you: *"The stars kept this a secret."* :)
+ To change the date, click the calendar button on the header, then choose a date, the URL will be something like: [/article/scorpio/2024-12-18](https://tryhoroscope.vercel.app/article/scorpio/2024-12-18), if the predictions for that date are not available, you will be redirected to [/article/not-found](https://tryhoroscope.vercel.app/article/not-found) page that tells you: *"The stars are keeping this a secret."* :)
 
 By default, the app will detect the language of your browser, but you can change that by clicking the language dropdown on the header, currently English and German are supported.
 
@@ -31,7 +31,7 @@ One of the goals of building this app was to ship production quality in a couple
 
 Just navigate to [/studio](https://tryhoroscope.vercel.app/studio) and you are ready to start. If you would like to try it, just let me know and I wlll grant you access.
 
-## Technical Capabiliiies
+## Technical Capabilities
 
 - URLs are SEO friendly, memorizable and simple for sharing with friends and family.
 - Article pages are rendered server-side with Next.js, this greatly improves [TTFB](https://web.dev/articles/ttfb) and SEO. 
@@ -42,15 +42,15 @@ Just navigate to [/studio](https://tryhoroscope.vercel.app/studio) and you are r
 - [Sanity](https://www.sanity.io/): modern and powerful CMS.
 - [SWR](https://swr.vercel.app/): great for loading client data using React hooks, keeps the code clean and handles caching.
 - [GraphQL](https://graphql.org/): CMS data is loaded by the Next.js API routes using GraphQL.
-- [Bun](https://bun.sh/): new JavaScript & TypeScript runtime, written from scratch for modern frontend workflows.
+- [Bun](https://bun.sh/): new JavaScript and TypeScript runtime, written from scratch for modern frontend workflows.
 
 ## CI/CD
 
-When a pull request is opened against the `main` branch a GitHub action will build and lint the TypeScript code.
+When a pull request is opened against the `main` branch a GitHub action will compile and lint the TypeScript code.
 
-The app follows GitOps, meaning once a commit or a PR is merged to the `main` branch, Vercel will automatically deploy the changes to: https://tryhoroscope.vercel.app
+The app follows GitOps, meaning once a commit or a PR is merged to the `main` branch, Vercel will automatically deploy the changes to: [tryhoroscope.vercel.app](https://tryhoroscope.vercel.app)
 
-The commits follow [Conventional Commits](https://www.conventionalcommits.org) conventions,  for consistency.
+The repository follows [Conventional Commits](https://www.conventionalcommits.org) for consistency.
 
 ## Getting Started
 
@@ -68,4 +68,4 @@ bun run dev
 
 ## Finally
 
-I kept my commits as they are, so you can see how I went through the progression of building the app organically.
+I kept my commits as they are, natural, so you can see how I went through the progression of building the app.
