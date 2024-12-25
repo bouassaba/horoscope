@@ -20,7 +20,6 @@ export const metadata: Metadata = {
     },
   ],
 }
-export const dynamic = 'force-dynamic'
 
 type Props = Readonly<{
   children: React.ReactNode
