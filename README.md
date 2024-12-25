@@ -3,6 +3,8 @@
 This is the most beautiful horoscope app that can ever be built in a couple of days!
 I gave it my best, and I hope you like 😊
 
+It's available live at: https://tryhoroscope.vercel.app
+
 ## Preface
 
 When you open the app, you will be greeted by an immersive cosmic animation on the background, this sets the mood for horoscope predictions that you are about to read.
