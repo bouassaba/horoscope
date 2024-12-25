@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { redirect } from 'next/navigation'
 import { PortableText } from '@portabletext/react'
 import { capitalCase } from 'change-case'
 import { fetchByZodiacSignAndDate } from '@/client/article'
@@ -30,15 +31,15 @@ export default async function ArticleByZodiacSignAndDatePage({
     language: params.locale,
   })
 
+  if (!article) {
+    redirect('/article/not-found')
+  }
+
   return (
     <article className={cn('prose', 'dark:prose-invert')}>
-      {article ? (
-        <>
-          <h1>{article.zodiacSign.name}</h1>
-          <h2>{new Date(article.date).toLocaleDateString(params.locale)}</h2>
-          <PortableText value={article.bodyRaw} />
-        </>
-      ) : null}
+      <h1>{article.zodiacSign.name}</h1>
+      <h2>{new Date(article.date).toLocaleDateString(params.locale)}</h2>
+      <PortableText value={article.bodyRaw} />
     </article>
   )
 }

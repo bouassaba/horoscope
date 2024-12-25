@@ -3,4 +3,5 @@ export default {
   'sidebar.tagline': 'Ein Blick in die Zukunft',
   'header.breadcrumbRoot': 'Sternzeichen',
   'home.hint': 'Wähle ein Sternzeichen aus.',
+  'notFound.message': 'Die Sterne halten dies geheim.',
 } as const
