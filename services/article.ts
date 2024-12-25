@@ -4,24 +4,24 @@ import { GRAPHQL_URL } from '@/config'
 import { Article, ArticleDTO } from '@/types'
 import { mapOne as mapZodiacSign } from './zodiac-sign'
 
-export type GetByZodiacSignAndDateOptions = {
-  zodiacSign: string
+export type GetBySlugAndDateOptions = {
+  slug: string
   date: string
   language?: string
 }
 
-export async function getByZodiacSignAndDate({
-  zodiacSign,
+export async function getBySlugAndDate({
+  slug,
   date,
   language,
-}: GetByZodiacSignAndDateOptions): Promise<ArticleDTO | undefined> {
+}: GetBySlugAndDateOptions): Promise<ArticleDTO | undefined> {
   const { allArticle } = await request<{ allArticle: Article[] }>(
     GRAPHQL_URL,
     gql`
       {
         allArticle(
           where: {
-            zodiacSign: { slug: { current: { eq: "${zodiacSign}" } } }
+            zodiacSign: { slug: { current: { eq: "${slug}" } } }
             date: { eq: "${date}" }
             ${language ? `language: { eq: "${language}" }` : ''}
           }
@@ -44,22 +44,22 @@ export async function getByZodiacSignAndDate({
   }
 }
 
-export type GetByZodiacSignOptions = {
-  zodiacSign: string
+export type GetBySlugOptions = {
+  slug: string
   language?: string
 }
 
-export async function getByZodiacSign({
-  zodiacSign,
+export async function getBySlug({
+  slug,
   language,
-}: GetByZodiacSignOptions): Promise<ArticleDTO | undefined> {
+}: GetBySlugOptions): Promise<ArticleDTO | undefined> {
   const { allArticle } = await request<{ allArticle: Article[] }>(
     GRAPHQL_URL,
     gql`
         {
           allArticle(
             where: {
-              zodiacSign: { slug: { current: { eq: "${zodiacSign}" } } }
+              zodiacSign: { slug: { current: { eq: "${slug}" } } }
               ${language ? `language: { eq: "${language}" }` : ''}
             }
             sort: { date: DESC }

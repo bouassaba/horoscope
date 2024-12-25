@@ -1,3 +1,4 @@
+import { FetchByZodiacSignOptions } from '@/client/article'
 import { fetchBySlug } from '@/client/zodiac-sign'
 import Header from '@/components/header'
 import { cn } from '@/lib/utils'
@@ -7,8 +8,7 @@ type Props = Readonly<{
   children: React.ReactNode
 }>
 
-type Params = {
-  zodiacSign: string
+type Params = FetchByZodiacSignOptions & {
   locale: string
 }
 
@@ -17,7 +17,7 @@ export default async function ArticleByZodiacSignLayout({
   children,
 }: Props) {
   const zodiacSign = await fetchBySlug({
-    slug: params.zodiacSign,
+    slug: params.slug,
     language: params.locale,
   })
 

@@ -6,21 +6,24 @@ import { cn } from '@/lib/utils'
 import { getCurrentLocale } from '@/locales/server'
 
 type Props = {
-  params: FetchByZodiacSignOptions
+  params: Params
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
+type Params = FetchByZodiacSignOptions & {
+  locale: string
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { zodiacSign } = params
   return {
-    title: capitalCase(zodiacSign),
+    title: capitalCase(params.slug),
   }
 }
 
 export default async function ArticleByZodiacSignPage({ params }: Props) {
   const locale = await getCurrentLocale()
   const article = await fetchByZodiacSign({
-    zodiacSign: params.zodiacSign,
+    slug: params.slug,
     language: locale,
   })
 

@@ -6,28 +6,29 @@ import {
   FetchByZodiacSignAndDateOptions,
 } from '@/client/article'
 import { cn } from '@/lib/utils'
-import { getCurrentLocale } from '@/locales/server'
 
 type Props = {
-  params: FetchByZodiacSignAndDateOptions
+  params: Params
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
+type Params = FetchByZodiacSignAndDateOptions & {
+  locale: string
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { zodiacSign } = params
   return {
-    title: capitalCase(zodiacSign),
+    title: capitalCase(params.slug),
   }
 }
 
 export default async function ArticleByZodiacSignAndDatePage({
   params,
 }: Props) {
-  const locale = await getCurrentLocale()
   const article = await fetchByZodiacSignAndDate({
-    zodiacSign: params.zodiacSign,
+    slug: params.slug,
     date: params.date,
-    language: locale,
+    language: params.locale,
   })
 
   return (

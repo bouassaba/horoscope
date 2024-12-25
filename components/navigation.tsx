@@ -47,7 +47,7 @@ export type NavigationProps = {
 }
 
 export default function Navigation({ zodiacSigns }: NavigationProps) {
-  const { zodiacSign: slug } = useParams<{ zodiacSign?: string }>()
+  const { slug } = useParams<{ slug?: string }>()
   const { state } = useSidebar()
 
   return (

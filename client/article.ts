@@ -2,19 +2,19 @@ import { API_URL } from '@/config'
 import { ArticleDTO } from '@/types'
 
 export type FetchByZodiacSignOptions = {
-  zodiacSign: string
+  slug: string
   language?: string
 }
 
 export async function fetchByZodiacSign({
-  zodiacSign,
+  slug,
   language,
 }: FetchByZodiacSignOptions): Promise<ArticleDTO | undefined> {
   const params = new URLSearchParams()
   if (language) {
     params.append('language', language)
   }
-  const url = `${API_URL}/api/articles/${zodiacSign}?${params}`
+  const url = `${API_URL}/api/articles/${slug}?${params}`
   const response = await fetch(url)
   if (response.ok) {
     return response.json()
@@ -22,13 +22,13 @@ export async function fetchByZodiacSign({
 }
 
 export type FetchByZodiacSignAndDateOptions = {
-  zodiacSign: string
+  slug: string
   date: string
   language?: string
 }
 
 export async function fetchByZodiacSignAndDate({
-  zodiacSign,
+  slug,
   date,
   language,
 }: FetchByZodiacSignAndDateOptions): Promise<ArticleDTO | undefined> {
@@ -36,7 +36,7 @@ export async function fetchByZodiacSignAndDate({
   if (language) {
     params.append('language', language)
   }
-  const url = `${API_URL}/api/articles/${zodiacSign}/${date}?${params}`
+  const url = `${API_URL}/api/articles/${slug}/${date}?${params}`
   const response = await fetch(url)
   if (response.ok) {
     return response.json()
