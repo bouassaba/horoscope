@@ -16,7 +16,11 @@ import DateSelector from './date-selector'
 import LanguageSelector from './language-selector'
 import ThemeToggle from './theme-toggle'
 
-export default function Header() {
+export type HeaderProps = {
+  zodiacSign: string
+}
+
+export default function Header({ zodiacSign }: HeaderProps) {
   return (
     <header
       className={cn(
@@ -54,7 +58,7 @@ export default function Header() {
           </BreadcrumbList>
         </Breadcrumb>
         <div className={cn('grow', 'h-10')} />
-        <DateSelector />
+        <DateSelector zodiacSign={zodiacSign} />
         <LanguageSelector />
         <ThemeToggle />
       </div>

@@ -21,13 +21,16 @@ export const metadata: Metadata = {
   ],
 }
 
-export default function RootLayout({
-  params,
-  children,
-}: Readonly<{
+type Props = Readonly<{
   children: React.ReactNode
-  params: { locale: string }
-}>) {
+  params: Params
+}>
+
+type Params = {
+  locale: string
+}
+
+export default function RootLayout({ params, children }: Props) {
   const { locale } = params
 
   return (
