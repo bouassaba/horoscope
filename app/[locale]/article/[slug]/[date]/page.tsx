@@ -35,6 +35,7 @@ export default async function ArticleByZodiacSignAndDatePage({
       {article ? (
         <>
           <h1>{article.zodiacSign.name}</h1>
+          <h2>{new Date(article.date).toLocaleDateString(params.locale)}</h2>
           <PortableText value={article.bodyRaw} />
         </>
       ) : null}
