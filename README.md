@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Horoscope
+
+This is the most beautiful horoscope app that can ever be built in a couple of days!
+I gave it my best, and I hope you like 😊
+
+## Preface
+
+When you open the app, you will be greeted by an immersive cosmic animation on the background, this sets the mood for horoscope predictions that you are about to read.
+
+To start, choose a zodiac sign from the left sidebar, the sidebar can be collapsed or expanded by clicking the rectangular button near the logo.
+
+Once you choose a zodiac sign, a default page for the sign will be displayed. For example, for scorpio the URL will be [/article/scorpio](https://tryhoroscope.vercel.app/article/scorpio), this page automatically picks the latest prediction date available for that sign.
+
+ To change the date, click the calendar button on the header, then choose a date, the URL will be something like: [/article/scorpio/2024-12-18](https://tryhoroscope.vercel.app/article/scorpio/2024-12-18), if the predictions for that date are not available, you will be redirected to [/article/not-found](https://tryhoroscope.vercel.app/article/not-found) page that tells you: *"The stars kept this a secret."* :)
+
+By default, the app will detect the language of your browser, but you can change that by clicking the language dropdown on the header, currently English and German are supported.
+
+The app comes with dark mode support, which can be toggled by clicking the moon icon on the header, a fallback to the system theme is also supported.
+
+Notice that when you load an article page, the breadcrumb will show a skeleton animation to give you the impression that it's loading.
+
+And one more thing 😉 the app is fully mobile! 📱
+
+## Full Featured CMS!
+
+The app comes with a fully featured CMS, [Sanity](https://www.sanity.io/), where you can create, edit, and delete articles, and manage zodiac signs.
+
+One of the goals of building this app was to ship production quality in a couple of days!
+
+Just navigate to [/studio](https://tryhoroscope.vercel.app/studio) and you are ready to start. If you would like to try it, just let me know and I wlll grant you access.
+
+## Technical Capabiliiies
+
+- URLs are SEO friendly, memorizable and simple for sharing with friends and family.
+- Article pages are rendered server-side with Next.js, this greatly improves [TTFB](https://web.dev/articles/ttfb) and SEO. 
+
+## Tech Stack
+
+- [shadcn/ui](https://ui.shadcn.com/): one of the best UI libraries out there, based on [Radix](https://www.radix-ui.com/).
+- [Sanity](https://www.sanity.io/): modern and powerful CMS.
+- [SWR](https://swr.vercel.app/): great for loading client data using React hooks, keeps the code clean and handles caching.
+- [GraphQL](https://graphql.org/): CMS data is loaded by the Next.js API routes using GraphQL.
+- [Bun](https://bun.sh/): new JavaScript & TypeScript runtime, written from scratch for modern frontend workflows.
+
+## CI/CD
+
+When a pull request is opened against the `main` branch a GitHub action will build and lint the TypeScript code.
+
+The app follows GitOps, meaning once a commit or a PR is merged to the `main` branch, Vercel will automatically deploy the changes to: https://tryhoroscope.vercel.app
+
+The commits follow [Conventional Commits](https://www.conventionalcommits.org) conventions,  for consistency.
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```shell
+bun i
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Run for development:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```shell
+bun run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Finally
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+I kept my commits as they are, so you can see how I went through the progression of building the app organically.
