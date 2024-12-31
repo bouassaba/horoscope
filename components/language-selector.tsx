@@ -1,6 +1,7 @@
 'use client'
 
-import * as React from 'react'
+import { useCallback } from 'react'
+import { useEffect } from 'react'
 import { Languages } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
@@ -12,9 +13,28 @@ import {
 import { cn } from '@/lib/utils'
 import { useChangeLocale, useCurrentLocale } from '@/locales/client'
 
+type Locale = 'en' | 'de'
+
 export default function LanguageSelector() {
   const changeLocale = useChangeLocale()
   const locale = useCurrentLocale()
+
+  useEffect(() => {
+    const userDefinedLocale = localStorage.getItem('locale')
+    // If no user defined locale, use browser language
+    if (!userDefinedLocale) {
+      changeLocale(new Intl.Locale(navigator.language).language as Locale)
+    }
+  }, [locale, changeLocale])
+
+  const handleChangeLocale = useCallback(
+    (locale: Locale) => {
+      changeLocale(locale)
+      // Persist as a user defined locale
+      localStorage.setItem('locale', locale)
+    },
+    [changeLocale],
+  )
 
   return (
     <DropdownMenu>
@@ -35,13 +55,13 @@ export default function LanguageSelector() {
       <DropdownMenuContent align="end">
         <DropdownMenuCheckboxItem
           checked={locale === 'en'}
-          onClick={() => changeLocale('en')}
+          onClick={() => handleChangeLocale('en')}
         >
           English
         </DropdownMenuCheckboxItem>
         <DropdownMenuCheckboxItem
           checked={locale === 'de'}
-          onClick={() => changeLocale('de')}
+          onClick={() => handleChangeLocale('de')}
         >
           Deutsch
         </DropdownMenuCheckboxItem>
