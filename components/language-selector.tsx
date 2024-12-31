@@ -12,8 +12,7 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { cn } from '@/lib/utils'
 import { useChangeLocale, useCurrentLocale } from '@/locales/client'
-
-type Locale = 'en' | 'de'
+import { Locale } from '@/locales/types'
 
 export default function LanguageSelector() {
   const changeLocale = useChangeLocale()
